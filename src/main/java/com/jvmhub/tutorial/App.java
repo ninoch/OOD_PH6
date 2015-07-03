@@ -7,11 +7,24 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
+import users.Users;
+import users.UsersDB;
+
 
 
 public class App {
 	private static SessionFactory ourSessionFactory;
     private static ServiceRegistry serviceRegistry;
+    public static void main(String[] args) {
+		try {
+			StartDB();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Users nazanin = UsersDB.getByUserName("nazanin");
+		nazanin.make_a_consult("biorze", "1394/01/03", "salam", "title");
+	}
 
 	public static void StartDB() throws Exception {
 		try {
