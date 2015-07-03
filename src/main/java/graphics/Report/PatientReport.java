@@ -50,7 +50,7 @@ public class PatientReport extends JPanel {
 		JButton height = new JButton("\u0642\u062F");
 		height.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-		        chart.drawNewChart(getList(50.0, 200.0, 30), "Height ( cm ) - Time ( day )");
+//		        chart.drawNewChart(getList(50.0, 200.0, 30), "Height ( cm ) - Time ( day )");
 				cl.show(PatientReport.this, "chart");
 			}
 		});
@@ -60,7 +60,7 @@ public class PatientReport extends JPanel {
 		JButton weight = new JButton("\u0648\u0632\u0646");
 		weight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-		        chart.drawNewChart(getList(20.0, 200.0, 30), "Weight ( cm ) - Time ( day )");
+//		        chart.drawNewChart(getList(20.0, 200.0, 30), "Weight ( cm ) - Time ( day )");
 				cl.show(PatientReport.this, "chart");
 			}
 		});
@@ -70,7 +70,7 @@ public class PatientReport extends JPanel {
 		JButton oxyjen = new JButton("\u0645\u06CC\u0627\u0646\u06AF\u06CC\u0646 \u0627\u06A9\u0633\u06CC\u0698\u0646");
 		oxyjen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-		        chart.drawNewChart(getList(1.0, 60.0, 30), "Oxyjen ( liter / minute ) - Time ( day )");
+//		        chart.drawNewChart(getList(1.0, 60.0, 30), "Oxyjen ( liter / minute ) - Time ( day )");
 				cl.show(PatientReport.this, "chart");
 			}
 		});
@@ -80,7 +80,7 @@ public class PatientReport extends JPanel {
 		JButton energy = new JButton("\u0645\u06CC\u0627\u0646\u06AF\u06CC\u0646 \u0627\u0646\u0631\u0698\u06CC");
 		energy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-		        chart.drawNewChart(getList(50.0, 200.0, 40), "Energy ( cal / minute ) - Time ( day )");
+//		        chart.drawNewChart(getList(50.0, 200.0, 40), "Energy ( cal / minute ) - Time ( day )");
 				cl.show(PatientReport.this, "chart");
 			}
 		});
@@ -90,7 +90,7 @@ public class PatientReport extends JPanel {
 		JButton beat = new JButton("\u0645\u06CC\u0627\u0646\u06AF\u06CC\u0646 \u0636\u0631\u0628\u0627\u0646 \u0642\u0644\u0628");
 		beat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-		        chart.drawNewChart(getList(5.0, 60.0, 30), "Beat ( bpm ) - Time ( day )");
+//		        chart.drawNewChart(getList(5.0, 60.0, 30), "Beat ( bpm ) - Time ( day )");
 				cl.show(PatientReport.this, "chart");
 			}
 		});

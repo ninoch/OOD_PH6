@@ -3,8 +3,11 @@ package graphics.Doctor;
 import graphics.BackGroundImage;
 import graphics.Layout;
 import graphics.LoginUI;
-import graphics.Report.DrugReport;
+import graphics.Report.PressureReport;
 import graphics.Report.IllnessReport;
+import graphics.Report.SugarReport;
+import graphics.Report.ActivityReport;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,11 +26,18 @@ public class DoctorUI extends Layout {
 		
 		DoctorPatientSearch searchPanel = new DoctorPatientSearch();
 		IllnessReport illReportPanel = new IllnessReport();
-		DrugReport drugReportPanel = new DrugReport();
+		PressureReport pressReport = new PressureReport();
+		SugarReport sugrReport = new SugarReport();
+		ActivityReport actReport = new ActivityReport();
+		
 		DoctorInbox inboxPat = new DoctorInbox();
 		DoctorConsultationsInbox consultInbox = new DoctorConsultationsInbox();
 		
-		content.add(new BackGroundImage("img/doctor.jpg"), "default");
+		BackGroundImage backGroundImage = new BackGroundImage("img/doctor.jpg");
+		content.add(backGroundImage, "default");
+		
+		JMenuItem menuItem = new JMenuItem("\u0641\u0639\u0627\u0644\u06CC\u062A \u0647\u0627");
+		backGroundImage.add(menuItem);
 		content.add(new DoctorProfile(), "profile");
 		content.add(inboxPat, "patientsInbox");
 		content.add(consultInbox, "consultationsInbox");
@@ -35,7 +45,10 @@ public class DoctorUI extends Layout {
 		DoctorPatientSearchResult search_res = new DoctorPatientSearchResult(this.notice);
 		content.add(search_res, "showall");
 		content.add(illReportPanel, "illnessReport");
-		content.add(drugReportPanel, "drugReport");
+		content.add(pressReport, "pressReport");
+		content.add(sugrReport, "sugrReport");
+		content.add(actReport, "actReport");
+		
 		content.add(new EditPrescription(this.notice), "editPrescription");
 		
 		// Making Patient menu
@@ -60,19 +73,47 @@ public class DoctorUI extends Layout {
 		});
 		menu_1.add(illnessReport);
 		
-		JMenuItem drugsReport = new JMenuItem("\u062F\u0627\u0631\u0648 \u0647\u0627");
-		drugsReport.addActionListener(new ActionListener() {
+		JMenuItem activityReport = new JMenuItem("\u0641\u0639\u0627\u0644\u06CC\u062A \u0647\u0627");
+		activityReport.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					drugReportPanel.notice.call();
+					actReport.notice.call();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				cl.show(content, "drugReport");
+				cl.show(content, "actReport");
 			}
 		});
-		menu_1.add(drugsReport);
+		
+		JMenuItem SugarReport = new JMenuItem("\u0642\u0646\u062F \u062E\u0648\u0646");
+		SugarReport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					sugrReport.notice.call();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				cl.show(content, "sugrReport");
+			}
+		});
+		menu_1.add(SugarReport);
+		
+		JMenuItem PressureReport = new JMenuItem("\u0641\u0634\u0627\u0631 \u062E\u0648\u0646");
+		PressureReport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					pressReport.notice.call();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				cl.show(content, "pressReport");
+				}
+		});
+		menu_1.add(PressureReport);
+		menu_1.add(activityReport);
 		
 		JMenu menu = new JMenu("\u0628\u06CC\u0645\u0627\u0631\u0627\u0646");
 		menuBar.add(menu);

@@ -33,10 +33,10 @@ public class GraphPanel extends JPanel {
     private static final Stroke GRAPH_STROKE = new BasicStroke(2f);
     private int pointWidth = 4;
     private int numberYDivisions = 10;
-    private List<Double> list;
+    private List<Integer> list;
     private JLabel description;
 
-    public GraphPanel(List<Double> elements, String descr, Callable<Void> notice) {
+    public GraphPanel(List<Integer> elements, String descr, Callable<Void> notice) {
     	addMouseListener(new MouseAdapter() {
     		@Override
     		public void mouseClicked(MouseEvent arg0) {
@@ -145,7 +145,7 @@ public class GraphPanel extends JPanel {
 
     private double getMinElement() {
         double minEle = Double.MAX_VALUE;
-        for (Double ele : list) {
+        for (Integer ele : list) {
             minEle = Math.min(minEle, ele);
         }
         return minEle;
@@ -153,13 +153,13 @@ public class GraphPanel extends JPanel {
 
     private double getMaxElement() {
         double maxEle = Double.MIN_VALUE;
-        for (Double ele : list) {
+        for (Integer ele : list) {
             maxEle = Math.max(maxEle, ele);
         }
         return maxEle;
     }
 
-    public void drawNewChart(List<Double> elements, String des) {
+    public void drawNewChart(List<Integer> elements, String des) {
         this.list = elements;
     	description.setText(des);
     	
@@ -167,7 +167,7 @@ public class GraphPanel extends JPanel {
         this.repaint();
     }
 
-    public List<Double> getElements() {
+    public List<Integer> getElements() {
         return list;
     }
     

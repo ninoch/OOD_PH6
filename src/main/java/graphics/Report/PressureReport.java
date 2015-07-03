@@ -4,28 +4,41 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import medicalinfo.diseaseandcure.Disease;
-import medicalinfo.diseaseandcure.DiseaseController;
+
+import medicalinfo.BodyInfo;
+import medicalinfo.BodyInfoController;
 
 @SuppressWarnings("serial")
-public class IllnessReport extends Report {
-	private JTextField illnessName;
+public class PressureReport extends Report{
+	private JTextField minPres;
+	private JTextField maxPres;
 	private JTextField fromDate;
 	private JTextField toDate;
 	
-	public IllnessReport() {
-		JLabel label = new JLabel("نام بیماری");
+	public PressureReport() {
+		JLabel label = new JLabel("حداقل فشار خون:");
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		label.setBounds(315, 11, 155, 28);
+		label.setBounds(315, 5, 155, 28);
 		select.add(label);
+
+		minPres = new JTextField();
+		minPres.setBounds(243, 30, 227, 20);
+		select.add(minPres);
+		minPres.setColumns(10);
 		
-		illnessName = new JTextField();
-		illnessName.setBounds(243, 50, 227, 20);
-		select.add(illnessName);
-		illnessName.setColumns(10);
+		JLabel lbl = new JLabel("حداکثر فشار خون:");
+		lbl.setHorizontalAlignment(SwingConstants.RIGHT);
+		lbl.setBounds(315, 55, 155, 28);
+		select.add(lbl);
+
+		maxPres = new JTextField();
+		maxPres.setBounds(243, 80, 227, 20);
+		select.add(maxPres);
+		maxPres.setColumns(10);
 		
 		JLabel label_1 = new JLabel("\u0627\u0632 \u062A\u0627\u0631\u06CC\u062E:");
 		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -49,33 +62,32 @@ public class IllnessReport extends Report {
 		
 	}
 	
-	
-	List<Integer> getList(String name, String startDate, String endDate)
+	List<Integer> getList(int minl, int maxl, String fromDate, String toDate)
 	{
-		ArrayList<Disease> ills = DiseaseController.getDiseaseByDate(name, startDate, endDate);
-		Collections.sort(ills, new Comparator<Disease>() {
-            public int compare(Disease a, Disease b) {
+		ArrayList<BodyInfo> press = BodyInfoController.getBloodPressure(fromDate, toDate, minl, maxl);
+		Collections.sort(press, new Comparator<BodyInfo>() {
+            public int compare(BodyInfo a, BodyInfo b) {
                 return a.getDate().compareTo(b.getDate());
             }
         });
 		List<String> dates = new ArrayList<String>();
-		for(int i = 0; i < ills.size(); i++)
-			dates.add(ills.get(i).getDate());
+		for(int i = 0; i < press.size(); i++)
+			dates.add(press.get(i).getDate());
 		return make_array(dates);
 	}
 
 	@Override
 	void make_elements() {
 		// TODO Auto-generated method stub
-		title = "Illness Number - Time ( day )"; 
-		elements = getList(illnessName.getText(), fromDate.getText(), toDate.getText());
+		title = "Drug Number - Time ( day )";
+		elements = getList(Integer.parseInt(minPres.getText()), Integer.parseInt(maxPres.getText()), fromDate.getText(), toDate.getText());
 		
 	}
 
-
 	@Override
 	boolean check_inputs() {
-		if(illnessName.getText().equals("") 
+		if(minPres.getText().equals("")
+				|| maxPres.getText().equals("")
 				|| fromDate.getText().length() != 10 
 				|| toDate.getText().length() != 10)
 			return false;

@@ -24,14 +24,13 @@ public class DrugReport extends Report {
 	void make_elements() {
 		// TODO Auto-generated method stub
 		title = "Drug Number - Time ( day )";
-		elements = getList(0.0, 50.0, 20);
+//		elements = getList(0.0, 50.0, 20);
 		
 	}
 
 	@Override
-	void set_field() {
+	boolean check_inputs() {
 		// TODO Auto-generated method stub
-		field = "‰«„ œ«—Ê:";
+		return false;
 	}
-
 }
