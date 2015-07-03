@@ -6,7 +6,18 @@ import users.reporters.doctor.Doctor;
 import users.reporters.patient.Patient;
 
 public class MedicateController {
-	static MedicateDB mdb = new MedicateDBPersistent();
+	static MedicateDB mdb;
+	public static void setType(String i) {
+		switch (i) {
+		case "file":
+			mdb = new MedicateDBFile();
+			break;
+
+		default:
+			mdb = new MedicateDBPersistent();
+			break;
+		}
+	}
 	public static boolean is_medicating(String doc, String pat) {
 		ArrayList<Patient> listP = mdb.patient_from_doctor(doc, true);
 		for(Patient p: listP)

@@ -7,8 +7,18 @@ import users.MedicateController;
 import users.Users;
 
 public class BodyInfoController {
-	static BodyInfoDB bid = new BodyInfoDBPersistent();
+	static BodyInfoDB bid;
+	public static void setType(String i) {
+		switch (i) {
+		case "file":
+			bid = new BodyInfoFile();
+			break;
 
+		default:
+			bid = new BodyInfoDBPersistent();
+			break;
+		}
+	}
 	public static void save(BodyInfo bodyInfo) {
 		if(!MedicateController.is_medicating(bodyInfo.getDocUser(), bodyInfo.getPatUser()))
 			try {
