@@ -25,9 +25,6 @@ import users.reporters.patient.Patient;
 public class App {
 	private static SessionFactory ourSessionFactory;
     private static ServiceRegistry serviceRegistry;
-    public static void main(String[] args) throws Exception{
-		StartDB();
-	}
 
 	public static void StartDB() throws Exception {
 		try {
