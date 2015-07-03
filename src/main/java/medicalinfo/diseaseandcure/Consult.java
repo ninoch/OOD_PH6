@@ -26,7 +26,7 @@ public class Consult implements Serializable{
 		this.setTowho(towho);
 		this.setDate(date);
 		this.setMsg(msg);
-		this.setRead(false);
+		read = (false);
 		this.setTitle(title);
 		ConsultController.save(this);
 	}
@@ -62,7 +62,6 @@ public class Consult implements Serializable{
 	}
 	public void setRead(boolean read) {
 		this.read = read;
-		ConsultController.merge(this);
 	}
 	public void make_read() {
 		setRead(true);

@@ -17,7 +17,7 @@ public class ConsultController {
 				e.printStackTrace();
 				return;
 			}
-		//cdb.save(consult);
+		cdb.save(consult);
 	}
 
 	public static void merge(Consult consult) {

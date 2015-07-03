@@ -23,7 +23,7 @@ public class App {
 			e.printStackTrace();
 		}
 		Users nazanin = UsersDB.getByUserName("nazanin");
-		nazanin.make_a_consult("biorze", "1394/01/03", "salam", "title");
+		nazanin.make_a_consult("biorze", "1394/01/03", "vai azizam", "love");
 	}
 
 	public static void StartDB() throws Exception {
