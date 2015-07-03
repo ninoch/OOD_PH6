@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="/Users/ehsanik/Desktop/oh_oh.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/01-hibernate-conf/salam.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
+        <file path="/01-hibernate-conf/LICENSE"/>
+        <file path="/01-hibernate-conf/.project"/>
+        <file path="/01-hibernate-conf/.gitignore"/>
+        <file path="/01-hibernate-conf/pom.xml"/>
+        <javaElement handleIdentifier="=01-hibernate-conf/src\/main\/resources"/>
+        <javaElement handleIdentifier="=01-hibernate-conf/src\/main\/java"/>
+        <file path="/01-hibernate-conf/.classpath"/>
+        <file path="/01-hibernate-conf/.DS_Store"/>
+    </selectedElements>
+</jardesc>

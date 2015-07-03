@@ -1,32 +1,29 @@
 package com.jvmhub.tutorial;
 
 
-import java.util.ArrayList;
-
-import medicalinfo.BodyInfo;
-import medicalinfo.diseaseandcure.Consult;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
-import users.Medicate;
-import users.MedicateDBPersistent;
 import users.Users;
 import users.UsersDB;
-import users.reporters.doctor.Doctor;
-import users.reporters.doctor.GeneralDoctor;
-import users.reporters.patient.Patient;
 
 
 
 public class App {
 	private static SessionFactory ourSessionFactory;
     private static ServiceRegistry serviceRegistry;
-    public static void main(String[] args) throws Exception{
-		StartDB();
+    public static void main(String[] args) {
+		try {
+			StartDB();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Users nazanin = UsersDB.getByUserName("nazanin");
+		nazanin.make_a_consult("biorze", "1394/01/03", "vai azizam", "love");
 	}
 
 	public static void StartDB() throws Exception {
