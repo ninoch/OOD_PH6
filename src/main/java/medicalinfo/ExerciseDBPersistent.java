@@ -2,9 +2,11 @@ package medicalinfo;
 
 
 import java.util.ArrayList;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+
 import com.jvmhub.tutorial.App;
 
 public class ExerciseDBPersistent implements ExerciseDB {
@@ -47,6 +49,7 @@ public class ExerciseDBPersistent implements ExerciseDB {
                 session.close();
         }
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	public ArrayList<Exercise> getExerciseByDate( int low,
 			int high, String startDate, String endDate) {

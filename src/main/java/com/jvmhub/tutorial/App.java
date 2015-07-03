@@ -1,24 +1,11 @@
 package com.jvmhub.tutorial;
 
 
-import java.util.ArrayList;
-
-import medicalinfo.BodyInfo;
-import medicalinfo.diseaseandcure.Consult;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
-
-import users.Medicate;
-import users.MedicateDBPersistent;
-import users.Users;
-import users.UsersDB;
-import users.reporters.doctor.Doctor;
-import users.reporters.doctor.GeneralDoctor;
-import users.reporters.patient.Patient;
 
 
 
