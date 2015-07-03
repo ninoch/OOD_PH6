@@ -1,5 +1,6 @@
 import graphics.LoginUI;
 import java.awt.EventQueue;
+
 import com.jvmhub.tutorial.App;
 
 public class Main {

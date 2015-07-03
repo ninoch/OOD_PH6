@@ -21,7 +21,7 @@ public class PharmacyUI extends Layout {
 
 		DrugReport drugReport = new DrugReport();
 		// Adding contents
-		content.add(new BackGroundImage("img/pharmacy.jpg"), "default");
+		content.add(new BackGroundImage("Statics/Images/pharmacy.jpg"), "default");
 		content.add(new PharmacyProfile(), "profile");
 		content.add(new PharmacyDrugSell(), "sell");
 		content.add(drugReport, "drugReport");

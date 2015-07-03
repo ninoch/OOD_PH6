@@ -28,7 +28,7 @@ public class AdminUI extends Layout {
 		PatientSearch searchPanel = new PatientSearch();
 		
 		// Adding contents
-		content.add(new BackGroundImage("img/admin.jpg"), "default");
+		content.add(new BackGroundImage("Statics/Images/admin.jpg"), "default");
 		content.add(new AdminProfile(), "profile");
 		content.add(new AdminAllPharmacies(), "phars");
 		content.add(allDoctors, "docs");

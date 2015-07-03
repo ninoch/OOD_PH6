@@ -34,7 +34,7 @@ public class PatientUI extends Layout {
 		IllnessList il = new IllnessList();
 		PatientInbox pinbox = new PatientInbox();
 		
-		content.add(new BackGroundImage("img/patient.gif"), "default");
+		content.add(new BackGroundImage("Statics/Images/patient.gif"), "default");
 		content.add(new PatientProfile(), "profile");
 		content.add(pinbox, "inbox");
 		content.add(new PatientSendMessage(this.notice), "send");

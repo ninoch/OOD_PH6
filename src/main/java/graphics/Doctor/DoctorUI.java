@@ -33,11 +33,8 @@ public class DoctorUI extends Layout {
 		DoctorInbox inboxPat = new DoctorInbox();
 		DoctorConsultationsInbox consultInbox = new DoctorConsultationsInbox();
 		
-		BackGroundImage backGroundImage = new BackGroundImage("img/doctor.jpg");
+		BackGroundImage backGroundImage = new BackGroundImage("Statics/Images/doctor.jpg");
 		content.add(backGroundImage, "default");
-		
-		JMenuItem menuItem = new JMenuItem("\u0641\u0639\u0627\u0644\u06CC\u062A \u0647\u0627");
-		backGroundImage.add(menuItem);
 		content.add(new DoctorProfile(), "profile");
 		content.add(inboxPat, "patientsInbox");
 		content.add(consultInbox, "consultationsInbox");
