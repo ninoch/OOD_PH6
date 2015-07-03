@@ -33,12 +33,13 @@ public class PatientUI extends Layout {
 		HealthList hl = new HealthList();
 		IllnessList il = new IllnessList();
 		PatientInbox pinbox = new PatientInbox();
+		PatientsAllDoctors alldocs = new PatientsAllDoctors();
 		
 		content.add(new BackGroundImage("Statics/Images/patient.gif"), "default");
 		content.add(new PatientProfile(), "profile");
 		content.add(pinbox, "inbox");
 		content.add(new PatientSendMessage(this.notice), "send");
-		content.add(new PatientsAllDoctors(), "alldocs");
+		content.add(alldocs, "alldocs");
 		content.add(new PatientSelectDoctor(this.notice), "changedoc");
 		content.add(new PatientAddActivity(this.notice), "activity");
 		content.add(new ActivityList(), "activityReport");
@@ -83,6 +84,7 @@ public class PatientUI extends Layout {
 		menu_1.add(allDoctors);
 		allDoctors.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				alldocs.update();
 				cl.show(content, "alldocs");
 			}
 		});

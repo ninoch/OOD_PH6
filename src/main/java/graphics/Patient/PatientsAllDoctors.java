@@ -1,15 +1,11 @@
 package graphics.Patient;
 
 import java.util.List;
-
-
-
 import graphics.ListAll;
 import graphics.Doctor.DoctorProfile;
-
 import javax.swing.JTable;
-
-import users.UsersDB;
+import users.LoginedUser;
+import users.MedicateController;
 import users.reporters.doctor.Doctor;
 
 @SuppressWarnings("serial")
@@ -20,9 +16,9 @@ public class PatientsAllDoctors extends ListAll {
 
 	@Override
 	protected void make_elements() {
-		List<Doctor> ls = UsersDB.get_doctors_by_name("", true);
+		List<Doctor> ls = MedicateController.findAllDoctors(LoginedUser.getUser().getUsername(), true);
 		elNum = ls.size();
-		
+		System.err.println("SIZEEE : " + ls.size());
 		Object [] columnNames = new Object[]{"Name", "Id", "Telephone", "Address"};
         elements = new JTable( new Object[elNum][4], columnNames ) { 
             public boolean isCellEditable(int row, int column) {
@@ -39,4 +35,7 @@ public class PatientsAllDoctors extends ListAll {
 		}
 	}
 
+	public void update() {
+		fill();
+	}
 }

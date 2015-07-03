@@ -1,7 +1,6 @@
 package graphics.Patient;
 
 import graphics.ChangePass;
-
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -13,6 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import users.LoginedUser;
+import users.reporters.patient.*;
 
 @SuppressWarnings("serial")
 public class PatientProfile extends JPanel {
@@ -38,7 +40,6 @@ public class PatientProfile extends JPanel {
 		JButton change = new JButton("\u062B\u0628\u062A \u062A\u063A\u06CC\u06CC\u0631\u0627\u062A");
 		change.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO change attributes 
 				PatientProfile.this.setVisible(false);
 			}
 		});
@@ -63,7 +64,7 @@ public class PatientProfile extends JPanel {
 		name.setHorizontalAlignment(SwingConstants.RIGHT);
 		name.setColumns(10);
 		name.setBounds(219, 36, 251, 20);
-		name.setText("\u0646\u0627\u0645 \u0628\u06CC\u0645\u0627\u0631");
+		name.setText((LoginedUser.getUser()).getName());
 		content.add(name);
 		
 		JLabel label_1 = new JLabel("\u0646\u0627\u0645 \u062E\u0627\u0646\u0648\u0627\u062F\u06AF\u06CC:");
@@ -75,7 +76,7 @@ public class PatientProfile extends JPanel {
 		familyName.setHorizontalAlignment(SwingConstants.RIGHT);
 		familyName.setColumns(10);
 		familyName.setBounds(219, 92, 251, 20);
-		familyName.setText("\u0646\u0627\u0645 \u062E\u0627\u0646\u0648\u0627\u062F\u06AF\u06CC \u0628\u06CC\u0645\u0627\u0631");
+		familyName.setText((LoginedUser.getUser()).getFamilyname());
 		content.add(familyName);
 		
 		JLabel label_2 = new JLabel("\u06A9\u062F \u0645\u0644\u06CC:");
@@ -87,7 +88,7 @@ public class PatientProfile extends JPanel {
 		pId.setHorizontalAlignment(SwingConstants.LEFT);
 		pId.setColumns(10);
 		pId.setBounds(219, 148, 251, 20);
-		pId.setText("3219");
+		pId.setText(String.valueOf(((Patient)LoginedUser.getUser()).getPersonId()));
 		content.add(pId);
 		
 		JLabel label_3 = new JLabel("\u062A\u0644\u0641\u0646:");
@@ -97,7 +98,7 @@ public class PatientProfile extends JPanel {
 		
 		telephone = new JTextField();
 		telephone.setHorizontalAlignment(SwingConstants.LEFT);
-		telephone.setText("0211234567");
+		telephone.setText(((Patient)LoginedUser.getUser()).getTel());
 		telephone.setColumns(10);
 		telephone.setBounds(219, 204, 251, 20);
 		content.add(telephone);
@@ -109,7 +110,7 @@ public class PatientProfile extends JPanel {
 		
 		PQ = new JTextField();
 		PQ.setHorizontalAlignment(SwingConstants.RIGHT);
-		PQ.setText("\u0627\u0648\u0644\u06CC\u0646 \u0645\u0631\u06CC\u0636\u06CC \u0627\u06CC \u06A9\u0647 \u06AF\u0631\u0641\u062A\u06CC\u061F!");
+		PQ.setText(((Patient)LoginedUser.getUser()).getForgetQuestion());
 		PQ.setColumns(10);
 		PQ.setBounds(219, 260, 251, 20);
 		content.add(PQ);
@@ -121,7 +122,7 @@ public class PatientProfile extends JPanel {
 		
 		PA = new JTextField();
 		PA.setHorizontalAlignment(SwingConstants.RIGHT);
-		PA.setText("\u0633\u0631\u062E\u06A9");
+		PA.setText(((Patient)LoginedUser.getUser()).getForgetAnswer());
 		PA.setColumns(10);
 		PA.setBounds(219, 316, 251, 20);
 		content.add(PA);

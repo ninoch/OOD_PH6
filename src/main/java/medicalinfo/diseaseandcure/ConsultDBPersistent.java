@@ -59,7 +59,7 @@ public class ConsultDBPersistent implements ConsultDB{
 		.add(Restrictions.eq("towho", username))
 		.list();
 		c1.addAll(c2);
-		return c2;
+		return c1;
 	}
 
 }

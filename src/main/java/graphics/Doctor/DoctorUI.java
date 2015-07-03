@@ -21,7 +21,7 @@ import javax.swing.JMenuItem;
 public class DoctorUI extends Layout {
 
 	public DoctorUI() {
-		setTitle("\u0645\u062F\u06CC\u0631\u06CC\u062A \u0628\u06CC\u0645\u0627\u0631");
+		setTitle("مدیریت پزشک");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		DoctorPatientSearch searchPanel = new DoctorPatientSearch();
