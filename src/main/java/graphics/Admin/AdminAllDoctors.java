@@ -7,7 +7,7 @@ import graphics.Doctor.DoctorProfile;
 
 import javax.swing.JTable;
 
-import users.UsersDB;
+import users.UsersController;
 import users.reporters.doctor.Doctor;
 import users.reporters.doctor.SpecialDoctor;
 
@@ -20,8 +20,8 @@ public class AdminAllDoctors extends ListAll {
 
 	@Override
 	protected void make_elements() {
-		List<Doctor> ls = UsersDB.get_doctors_by_name("", true);
-		ls.addAll(UsersDB.get_doctors_by_name("", false));
+		List<Doctor> ls = UsersController.get_doctors_by_name("", true);
+		ls.addAll(UsersController.get_doctors_by_name("", false));
 		elNum = ls.size();
 		
 		Object [] columnNames = new Object[]{"ID", "First Name", "Last Name", "Speciality"};

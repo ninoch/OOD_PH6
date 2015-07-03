@@ -7,7 +7,7 @@ import medicalinfo.ExerciseController;
 import register.RegisterList;
 import users.Medicate;
 import users.Users;
-import users.UsersDB;
+import users.UsersController;
 
 @SuppressWarnings("serial")
 @Entity
@@ -21,7 +21,7 @@ public class Patient extends Users{
 		this.setType("Patient");
 		this.setPersonId(personId);
 		RegisterList.add(this);
-		UsersDB.save(this);
+		UsersController.save(this);
 	}
 	public Patient()
 	{

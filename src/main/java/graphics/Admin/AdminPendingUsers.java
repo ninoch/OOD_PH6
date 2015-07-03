@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 
 import users.Users;
-import users.UsersDB;
+import users.UsersController;
 
 @SuppressWarnings("serial")
 public class AdminPendingUsers extends ListAll {
@@ -35,9 +35,9 @@ public class AdminPendingUsers extends ListAll {
 	    		}
 	    		else
 	    		{
-	    			Users rm = UsersDB.getByUserName(ls.get(ind).getUsername());
+	    			Users rm = UsersController.getByUserName(ls.get(ind).getUsername());
 	    			rm.setIsActivated(true);
-	    			UsersDB.merge(rm);
+	    			UsersController.merge(rm);
 	    			fill();
 	    		}
 	    	}
@@ -47,7 +47,7 @@ public class AdminPendingUsers extends ListAll {
 
 	@Override
 	protected void make_elements() {
-		ls = UsersDB.search_users_by_name("", false);
+		ls = UsersController.search_users_by_name("", false);
 		elNum = ls.size();
 		
 		Object [] columnNames = new Object[]{"Type", "First Name", "Last Name", "Username"};

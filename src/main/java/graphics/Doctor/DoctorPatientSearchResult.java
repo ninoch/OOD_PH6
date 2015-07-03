@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 
 import users.LoginedUser;
-import users.UsersDB;
+import users.UsersController;
 import users.reporters.patient.Patient;
 
 @SuppressWarnings("serial")
@@ -24,7 +24,7 @@ public class DoctorPatientSearchResult extends ListAll {
 	public DoctorPatientSearchResult(Callable<Void> notice) {
 		query = new String("");
 		System.err.println("query is here" + " " + query);
-		back = new JButton("»«“ê‘ ");
+		back = new JButton("ÔøΩÔøΩ“êÔøΩÔøΩ");
 	    back.setSize(90, 30);
 	    back.setLocation(280, 360);
 	    this.select.add(back);
@@ -54,7 +54,7 @@ public class DoctorPatientSearchResult extends ListAll {
 
 	@Override
 	protected void make_elements() {
-		List<Patient> ls = UsersDB.get_my_patient(LoginedUser.getUser().getUsername(), this.query);
+		List<Patient> ls = UsersController.get_my_patient(LoginedUser.getUser().getUsername(), this.query);
 		elNum = ls.size();
 		System.err.println(ls.size());
 		

@@ -8,7 +8,7 @@ import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
 import users.Users;
-import users.UsersDB;
+import users.UsersController;
 
 
 
@@ -22,7 +22,7 @@ public class App {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Users nazanin = UsersDB.getByUserName("nazanin");
+		Users nazanin = UsersController.getByUserName("nazanin");
 		nazanin.make_a_consult("biorze", "1394/01/03", "vai azizam", "love");
 	}
 

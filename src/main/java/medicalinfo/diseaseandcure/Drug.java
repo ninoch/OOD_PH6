@@ -21,7 +21,7 @@ public class Drug implements Serializable{
 		this.name = name;
 		this.dose = dose;
 		setPresId(presId);
-		DrugDB.save(this);
+		DrugDBController.save(this);
 	}
 	public Drug() {
 		

@@ -1,10 +1,12 @@
 package users.reporters.doctor;
 
 import javax.persistence.Entity;
+
 import com.jvmhub.tutorial.App;
+
 import users.Medicate;
 import users.MedicateController;
-import users.UsersDB;
+import users.UsersController;
 import users.reporters.patient.Patient;
 
 @SuppressWarnings("serial")
@@ -19,14 +21,14 @@ public class GeneralDoctor extends Doctor{
 				forgetQuestion, forgetAnswer);
 		this.setType("GeneralDoctor");
 		isGeneral = true;
-		UsersDB.save(this);
+		UsersController.save(this);
 	}
 	public GeneralDoctor(){
 		super();
 	}
 	public boolean accept_patient(String patUser){
 		System.err.println("PatUser: " + patUser);
-		Patient p = (Patient) UsersDB.getByUserName(patUser);
+		Patient p = (Patient) UsersController.getByUserName(patUser);
 		Medicate m = MedicateController.find_medicate(this.getUsername(), p.getUsername());
 		if(m == null)
 		{

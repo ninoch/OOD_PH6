@@ -2,7 +2,7 @@ package graphics.Admin;
 
 import java.util.List;
 
-import users.UsersDB;
+import users.UsersController;
 import users.reporters.patient.Patient;
 import graphics.ListAll;
 import graphics.Doctor.DoctorShowPatient;
@@ -18,7 +18,7 @@ public class AdminAllPatients extends ListAll {
 	
 	@Override
 	protected void make_elements() {
-        List<Patient> ls = UsersDB.search_patients_by_name("", true);
+        List<Patient> ls = UsersController.search_patients_by_name("", true);
 		elNum = ls.size();
 		
 		Object [] columnNames = new Object[]{"ID", "First Name", "Last Name", "Telephone"};

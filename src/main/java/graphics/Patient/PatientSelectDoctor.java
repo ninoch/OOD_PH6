@@ -13,7 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 import users.LoginedUser;
-import users.UsersDB;
+import users.UsersController;
 import users.reporters.patient.Patient;
 import users.reporters.doctor.Doctor;
 
@@ -96,7 +96,7 @@ public class PatientSelectDoctor extends JPanel {
 	}
 	
 	private void fill() {
-		ls = UsersDB.get_doctors_by_name(name.getText(), true);
+		ls = UsersController.get_doctors_by_name(name.getText(), true);
 		System.err.println("ollllaq: " + name.getText() + " " + ls.size());
 		docNums = ls.size();
 		

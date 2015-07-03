@@ -2,7 +2,7 @@ package graphics;
 
 import users.LoginedUser;
 import users.Users;
-import users.UsersDB;
+import users.UsersController;
 import graphics.Admin.AdminUI;
 import graphics.Doctor.DoctorUI;
 import graphics.Patient.PatientUI;
@@ -111,18 +111,18 @@ public class LoginUI extends JFrame {
 		        	LoginUI.this.dispose();
 	        	}
 	        	
-	        	else if( UsersDB.login(username.getText(), passw.getText()))
+	        	else if( UsersController.login(username.getText(), passw.getText()))
 	        	{	
-	        		System.err.println(UsersDB.getByUserName(username.getText()).getType());
-	        		new LoginedUser(UsersDB.getByUserName(username.getText()));
-	        		if(UsersDB.getByUserName(username.getText()).getType().equals("GeneralDoctor")
-	        		 || UsersDB.getByUserName(username.getText()).getType().equals("SepecialDoctor"))
+	        		System.err.println(UsersController.getByUserName(username.getText()).getType());
+	        		new LoginedUser(UsersController.getByUserName(username.getText()));
+	        		if(UsersController.getByUserName(username.getText()).getType().equals("GeneralDoctor")
+	        		 || UsersController.getByUserName(username.getText()).getType().equals("SepecialDoctor"))
 	        		{
 		        		DoctorUI d = new DoctorUI();
 		        		d.setVisible(true);
 		        	}	
 
-	        		else if(UsersDB.getByUserName(username.getText()).getType().equals("Patient"))
+	        		else if(UsersController.getByUserName(username.getText()).getType().equals("Patient"))
 	        		{
 		        		PatientUI d = new PatientUI();
 		        		d.setVisible(true);
@@ -234,7 +234,7 @@ public class LoginUI extends JFrame {
 	    		warning.setVisible(false);
 	        	if(state == 0)
 	        	{
-	        		usr = UsersDB.getByUserName(username.getText());
+	        		usr = UsersController.getByUserName(username.getText());
 	        		if(usr == null)
 	        		{
 	        			warning.setText("Please Register!");

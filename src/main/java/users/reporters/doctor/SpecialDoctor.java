@@ -1,10 +1,12 @@
 package users.reporters.doctor;
 
 import java.util.ArrayList;
+
 import javax.persistence.Entity;
+
 import users.Medicate;
 import users.MedicateController;
-import users.UsersDB;
+import users.UsersController;
 
 @SuppressWarnings("serial")
 @Entity
@@ -19,7 +21,7 @@ public class SpecialDoctor extends Doctor{
 				forgetQuestion, forgetAnswer);
 		this.setType("SepecialDoctor");
 		this.specialty = specialty;
-		UsersDB.save(this);
+		UsersController.save(this);
 		
 	}
 	public SpecialDoctor(){

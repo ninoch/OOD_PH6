@@ -49,7 +49,7 @@ public class DiseaseDBPersistent implements DiseaseDB {
 		.list();
 	}
 	public List<Drug> getAllDrugs(long disID){
-		Prescription p = PrescriptionDB.find(disID);
+		Prescription p = PrescriptionController.find(disID);
 		return p.getAllDrugs();
 	}
 	@SuppressWarnings("unchecked")

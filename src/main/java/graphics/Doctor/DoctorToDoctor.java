@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import users.LoginedUser;
-import users.UsersDB;
+import users.UsersController;
 import users.reporters.doctor.Doctor;
 import users.reporters.doctor.SpecialDoctor;
 import users.reporters.patient.Patient;
@@ -104,7 +104,7 @@ public class DoctorToDoctor extends JPanel {
 				pane.setVisible(false);
 				send.setVisible(false);
 			    warning.setVisible(false);
-			    drs = UsersDB.searchSpecialDoctors(dName.getText(), expert.getText());
+			    drs = UsersController.searchSpecialDoctors(dName.getText(), expert.getText());
 			    draw_table();
 				pane.setVisible(true);
 				send.setVisible(true);

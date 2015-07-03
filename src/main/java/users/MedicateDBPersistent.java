@@ -19,7 +19,7 @@ public class MedicateDBPersistent implements MedicateDB{
 		ArrayList<Patient> res = new ArrayList<>();
 		List<Medicate> m = get_medicate_doctor(doctor, isaccept);
 		for(Medicate tmp: m){
-			res.add( (Patient) UsersDB.getByUserName(tmp.getPatient()));
+			res.add( (Patient) UsersController.getByUserName(tmp.getPatient()));
 		}
 		return res;
 	}
@@ -111,7 +111,7 @@ public class MedicateDBPersistent implements MedicateDB{
 				.list();
 		for(Medicate tmp:m)
 		{
-			Users d =  UsersDB.getByUserName(tmp.getToDoctor());
+			Users d =  UsersController.getByUserName(tmp.getToDoctor());
 			if(d.getType().equals("GeneralDoctor"))
 			{
 				return tmp;
@@ -159,7 +159,7 @@ public class MedicateDBPersistent implements MedicateDB{
 		 .list();
 		 ArrayList<Doctor> res = new ArrayList<>();
 		 for(Medicate tmp:m){
-		 res.add((Doctor) UsersDB.getByUserName(tmp.getToDoctor()));
+		 res.add((Doctor) UsersController.getByUserName(tmp.getToDoctor()));
 		 }
 		 return res;
 	}

@@ -1,6 +1,7 @@
 package graphics.Doctor;
 
 import graphics.ListAll;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -11,7 +12,7 @@ import javax.swing.JTable;
 import users.LoginedUser;
 import users.Medicate;
 import users.MedicateController;
-import users.UsersDB;
+import users.UsersController;
 import users.reporters.doctor.GeneralDoctor;
 import users.reporters.doctor.SpecialDoctor;
 import users.reporters.patient.Patient;
@@ -94,7 +95,7 @@ public class DoctorConsultationsInbox extends ListAll {
         for(int i = 0; i < elNum; i++)
  		{
  			// Doctor d = (Doctor) UsersDB.getByUserName();
- 			Patient p = (Patient)(UsersDB.getByUserName(ls.get(i).getPatient()));
+ 			Patient p = (Patient)(UsersController.getByUserName(ls.get(i).getPatient()));
  			// elements.setValueAt(d.getName() + " " + d.getFamilyname(), i, 0);
  			elements.setValueAt(p.getName(), i, 0);
  			elements.setValueAt(p.getFamilyname(), i, 1);

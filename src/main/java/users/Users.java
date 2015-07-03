@@ -91,7 +91,7 @@ public abstract class Users implements Serializable{
 			 || ('a' <= username2.charAt(i) && username2.charAt(i) <= 'z') 
 			 || ('A' <= username2.charAt(i) && username2.charAt(i) <= 'Z') ) )
 			 return false;
-		if(UsersDB.getByUserName(username2) != null)
+		if(UsersController.getByUserName(username2) != null)
 			return false;
 		return true;
 	}

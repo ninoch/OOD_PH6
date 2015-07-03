@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
-import users.UsersDB;
+import users.UsersController;
 import users.reporters.patient.Patient;
 import medicalinfo.diseaseandcure.Consult;
 
@@ -84,7 +84,7 @@ public class DoctorMessage extends JPanel {
 		System.err.println("reply ro sakhtam");
 		reply.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Patient pat = (Patient) UsersDB.getByUserName(c.getAzki());
+				Patient pat = (Patient) UsersController.getByUserName(c.getAzki());
 				top.update(pat, c.getTitle());
 				cl.show(DoctorMessage.this, "reply");
 			}

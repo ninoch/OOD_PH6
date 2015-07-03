@@ -58,7 +58,7 @@ public class Disease implements Serializable{
 		this.symptoms = syptoms;
 	}
 	public void add_drug(String name_drug, int dose) {
-		Prescription p = PrescriptionDB.find(id);
+		Prescription p = PrescriptionController.find(id);
 		p.add_drug(name_drug, dose);
 	}
 	

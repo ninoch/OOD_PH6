@@ -5,7 +5,7 @@ import graphics.ListAll;
 import javax.swing.JTable;
 
 import users.LoginedUser;
-import users.UsersDB;
+import users.UsersController;
 import users.reporters.patient.Patient;
 import medicalinfo.BodyInfo;
 
@@ -36,7 +36,7 @@ public class HealthList extends ListAll {
 		for(int i = 0; i < elNum; i++)
 		{
 			elements.setValueAt(ls.get(i).getDate(), i, 0);
-			elements.setValueAt(UsersDB.getByUserName(ls.get(i).getDocUser()).getName(), i, 1);
+			elements.setValueAt(UsersController.getByUserName(ls.get(i).getDocUser()).getName(), i, 1);
 			this.add(new Health(this.notice, ls.get(i)), "#" + i);
 		}
 	}
