@@ -2,7 +2,9 @@ package medicalinfo;
 
 import java.util.ArrayList;
 
+import users.LoginedUser;
 import users.MedicateController;
+import users.Users;
 
 public class BodyInfoController {
 	static BodyInfoDB bid = new BodyInfoDBPersistent();
@@ -32,5 +34,15 @@ public class BodyInfoController {
 		}
 		return bid.get_body_info(username2);
 			
+	}
+	public static ArrayList<BodyInfo> getBloodSugar(String startDate,
+			String endDate, int low, int high){
+		 Users a = LoginedUser.getUser();
+		return bid.getBloodSugar(a.getUsername(), startDate, endDate, low, high);
+	}
+	public static ArrayList<BodyInfo> getBloodPressure(String startDate,
+			String endDate, double low, double high){
+		Users a = LoginedUser.getUser();
+		return bid.getBloodPressure(a.getUsername(), startDate, endDate, low, high);
 	}
 }

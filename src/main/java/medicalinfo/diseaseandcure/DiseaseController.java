@@ -3,7 +3,9 @@ package medicalinfo.diseaseandcure;
 import java.util.ArrayList;
 import java.util.List;
 
+import users.LoginedUser;
 import users.MedicateController;
+import users.Users;
 
 public class DiseaseController {
 	static DiseaseDB ddb = new DiseaseDBPersistent();
@@ -33,7 +35,8 @@ public class DiseaseController {
 	}
 	public static ArrayList<Disease> getDiseaseByDate(String name, 
 			String startDate, String endDate){
-		return ddb.getDiseaseByDate("", name, startDate, endDate);
+		Users a = LoginedUser.getUser();
+		return ddb.getDiseaseByDate(a.getUsername(), name, startDate, endDate);
 	}
 	
 	public static List<Drug> getAllDrugs(long disID){
