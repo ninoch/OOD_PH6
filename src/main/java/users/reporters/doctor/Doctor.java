@@ -12,7 +12,7 @@ import users.reporters.patient.Patient;
 @SuppressWarnings("serial")
 @Entity
 public abstract class Doctor extends Users{
-	private int DocId;
+	protected int DocId;
 	public Doctor(int docId, String username, String password, String address, 
 			String tel, String name, String familyname, String forgetQuestion,
 			String forgetAnswer) throws Exception{
@@ -57,5 +57,4 @@ public abstract class Doctor extends Users{
 	public void setDocId(int docId) {
 		DocId = docId;
 	}
-	
 }

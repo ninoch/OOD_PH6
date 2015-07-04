@@ -14,6 +14,8 @@ import medicalinfo.diseaseandcure.Consult;
 import medicalinfo.diseaseandcure.ConsultController;
 import medicalinfo.diseaseandcure.Disease;
 import medicalinfo.diseaseandcure.DiseaseController;
+import users.reporters.patient.*;
+import users.reporters.doctor.*;
 
 @SuppressWarnings("serial")
 @Entity
@@ -53,8 +55,6 @@ public abstract class Users implements Serializable{
 		this. forgetAnswer = forgetAnswer;
 		this.familyname = familyname;
 		this.isActivated = false;
-
-		
 	}
 	
 	public Users() {
@@ -178,7 +178,67 @@ public abstract class Users implements Serializable{
 	public void setType(String type) {
 		this.type = type;
 	}
-	
+	/*
+	@Id
+	private String username;
+	private String password;
+	private String address;
+	private String name;
+	private String forgetQuestion;
+	private String tel;
+	private String forgetAnswer;
+	private String familyname;
+	private boolean isActivated;
+	private String type;
+	docId;
+	isGeneral
+	specialty
+ */
+	@Override 
+	public String toString() {
+		String pid = " ";
+		if(this.type.equals("Patient"))
+			pid = String.valueOf(((Patient)this).getPersonId());
+		String isGen = String.valueOf(false);
+		if(this.type.equals("GeneralDoctor"))
+			isGen = String.valueOf(true);
+		String esp = " ";
+		if(this.type.equals("SepecialDoctor"))
+			esp = ((SpecialDoctor)this).getSpecialty();
+		String did = " ";
+		if(this.type.equals("SepecialDoctor") || this.type.equals("GeneralDoctor"))
+			did = String.valueOf(((Doctor)this).getDocId());
+		
+		return new StringBuffer(" username: ")
+ 	   .append(this.username)
+ 	   .append(" password: ")
+ 	   .append(this.password)
+ 	   .append(" address: ")
+ 	   .append(this.address)
+ 	   .append(" tel: ")
+ 	   .append(this.tel)
+ 	   .append(" name:" )
+ 	   .append(this.name)
+ 	   .append(" familyname: ")
+ 	   .append(this.familyname)
+ 	   .append(" forgetQuestion: ")
+ 	   .append(this.forgetQuestion)
+ 	   .append(" forgetAnswer: ")
+ 	   .append(this.forgetAnswer)
+ 	   .append(" isActivated: ")
+ 	   .append(String.valueOf(this.isActivated))
+ 	   .append(" type: ")
+ 	   .append(this.type)
+ 	   .append(" DocId: ")
+ 	   .append(did)
+ 	   .append(" isGeneral: ")
+ 	   .append(isGen)
+ 	   .append(" specialty: ")
+ 	   .append(esp)
+ 	   .append(" persondId: ")
+ 	   .append(pid)
+ 	   .toString();
+	}
 }
 
 

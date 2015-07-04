@@ -1,6 +1,7 @@
 package users.reporters.doctor;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 import com.jvmhub.tutorial.App;
 
@@ -14,6 +15,7 @@ import users.reporters.patient.Patient;
 public class GeneralDoctor extends Doctor{
 	
 	public boolean isGeneral = true;
+	
 	public GeneralDoctor(int docId, String username, String password,
 			String address, String tel, String name, String familyname,
 			String forgetQuestion, String forgetAnswer) throws Exception {
@@ -49,5 +51,4 @@ public class GeneralDoctor extends Doctor{
 		MedicateController.merge(m);
 		return true;
 	}
-
 }
