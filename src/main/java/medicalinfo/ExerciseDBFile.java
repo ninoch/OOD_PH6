@@ -17,4 +17,10 @@ public class ExerciseDBFile implements ExerciseDB {
 		return null;
 	}
 
+	@Override
+	public ArrayList<Exercise> getAllExercise(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
