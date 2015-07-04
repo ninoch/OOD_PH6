@@ -4,7 +4,18 @@ import java.util.ArrayList;
 import users.MedicateController;
 
 public class ExerciseController {
-	static ExerciseDB edb = new ExerciseDBPersistent();
+	static ExerciseDB edb ;
+	public static void setType(String i) {
+		switch (i) {
+		case "file":
+			edb = new ExerciseDBFile();
+			break;
+
+		default:
+			edb = new ExerciseDBPersistent();
+			break;
+		}
+	}
 
 	public static void save(Exercise exercise) {
 		//TODO if authenticated is user

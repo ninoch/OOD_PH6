@@ -2,10 +2,11 @@ package medicalinfo.diseaseandcure;
 
 import java.util.ArrayList;
 
+
 import users.MedicateController;
 
 public class ConsultController {
-	static ConsultDB cdb = new ConsultDBPersistent();
+	static ConsultDB cdb;
 
 	public static void save(Consult consult) {
 		if(!MedicateController.is_medicating(consult.getTowho(), consult.getAzki()) && 
@@ -26,6 +27,18 @@ public class ConsultController {
 
 	public static ArrayList<Consult> get_all_consult(String username) {
 		return cdb.get_all(username);
+	}
+
+	public static void setType(String i) {
+		switch (i) {
+		case "file":
+			cdb = new ConsultDBFile();
+			break;
+
+		default:
+			cdb = new ConsultDBPersistent();
+			break;
+		}
 	}
 
 

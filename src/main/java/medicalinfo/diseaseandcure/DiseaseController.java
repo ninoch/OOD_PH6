@@ -8,7 +8,18 @@ import users.MedicateController;
 import users.Users;
 
 public class DiseaseController {
-	static DiseaseDB ddb = new DiseaseDBPersistent();
+	static DiseaseDB ddb;
+	public static void setType(String i) {
+		switch (i) {
+		case "file":
+			ddb = new DiseaseDBFile();
+			break;
+
+		default:
+			ddb = new DiseaseDBPersistent();
+			break;
+		}
+	}
 
 	public static ArrayList<Disease> get_all_disease(String username,
 			String username2) {

@@ -6,7 +6,18 @@ import users.reporters.doctor.Doctor;
 import users.reporters.patient.Patient;
 
 public class UsersController {
-	static UsersDB udb = new UsersDBPersistent();
+	static UsersDB udb;
+	public static void setType(String i) {
+		switch (i) {
+		case "file":
+			udb = new UsersDBFile();
+			break;
+
+		default:
+			udb = new UsersDBPersistent();
+			break;
+		}
+	}
 	public List<Doctor> getAllSpecials(){
 		return udb.get_doctors_by_name("", false);
 	}
