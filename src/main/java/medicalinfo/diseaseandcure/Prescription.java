@@ -23,11 +23,11 @@ public class Prescription implements Serializable{
 	public Prescription(Long disease, String _date) {
 		this.DiseaseId = disease;	
 		this.setDate(_date);
-		PrescriptionController.save(this);
+//		PrescriptionController.save(this);
 	}
 	public void add_drug(String name, int dose)
 	{
-		new Drug(name, dose, DiseaseId);
+		DrugDBController.save(new Drug(name, dose, DiseaseId));
 	}
 	public Long getDiseaseId() {
 		return DiseaseId;

@@ -28,7 +28,7 @@ public class Consult implements Serializable{
 		this.setMsg(msg);
 		read = (false);
 		this.setTitle(title);
-		ConsultController.save(this);
+//		ConsultController.save(this);
 	}
 	public Consult(){
 		

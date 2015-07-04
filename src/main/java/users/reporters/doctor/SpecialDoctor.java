@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 
 import users.Medicate;
 import users.MedicateController;
-import users.UsersController;
 
 @SuppressWarnings("serial")
 @Entity
@@ -21,7 +20,7 @@ public class SpecialDoctor extends Doctor{
 				forgetQuestion, forgetAnswer);
 		this.setType("SepecialDoctor");
 		this.specialty = specialty;
-		UsersController.save(this);
+//		UsersController.save(this);
 		
 	}
 	public SpecialDoctor(){

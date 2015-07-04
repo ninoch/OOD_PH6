@@ -1,7 +1,6 @@
 package users.reporters.doctor;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 
 import com.jvmhub.tutorial.App;
 
@@ -23,7 +22,7 @@ public class GeneralDoctor extends Doctor{
 				forgetQuestion, forgetAnswer);
 		this.setType("GeneralDoctor");
 		isGeneral = true;
-		UsersController.save(this);
+//		UsersController.save(this);
 	}
 	public GeneralDoctor(){
 		super();

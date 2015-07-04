@@ -1,8 +1,11 @@
 package users.reporters.doctor;
 
 import java.util.ArrayList;
+
 import javax.persistence.Entity;
+
 import medicalinfo.BodyInfo;
+import medicalinfo.BodyInfoController;
 import medicalinfo.diseaseandcure.Disease;
 import medicalinfo.diseaseandcure.DiseaseController;
 import users.MedicateController;
@@ -24,7 +27,7 @@ public abstract class Doctor extends Users{
 	}
 	public void insert_body_info(String _patUser, int _height, int _weight
 			, float _bloodPressure, int _bloodSugar, String _date){
-		new BodyInfo(getUsername(), _patUser, _height, _weight, _bloodPressure, _bloodSugar, _date);
+		BodyInfoController.save(new BodyInfo(getUsername(), _patUser, _height, _weight, _bloodPressure, _bloodSugar, _date));
 	}
 	public void make_refr(String doc, String pat){
 		MedicateController.NewRefrence(getUsername(), doc, pat);
@@ -34,7 +37,7 @@ public abstract class Doctor extends Users{
 		return MedicateController.patient_from_doctor(this.getUsername(), false);
 	}
 	public void add_disease(String patientUsername, String DiseaseName, String DiseaseSymptom, String date){
-		new Disease(this.getUsername(), patientUsername, DiseaseName, DiseaseSymptom, date);
+		DiseaseController.save(new Disease(this.getUsername(), patientUsername, DiseaseName, DiseaseSymptom, date));
 	}
 	
 	public boolean add_drug(String disName, String patUser, String name, int dose){

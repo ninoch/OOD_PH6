@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
 
+import users.UsersController;
 import users.reporters.doctor.GeneralDoctor;
 import users.reporters.doctor.SpecialDoctor;
 
@@ -214,9 +215,9 @@ public class DoctorSignup extends JPanel {
 				}
 				try {
 					if(specialty.getText().equals(""))
-						new GeneralDoctor(num, username.getText(), pass.getText(), address.getText(), tell.getText(), name.getText(), familyName.getText(), DQ.getText(), DA.getText());
+						UsersController.save(new GeneralDoctor(num, username.getText(), pass.getText(), address.getText(), tell.getText(), name.getText(), familyName.getText(), DQ.getText(), DA.getText()));
 					else
-						new SpecialDoctor(specialty.getText(), num, username.getText(), pass.getText(), address.getText(), tell.getText(), name.getText(), familyName.getText(), DQ.getText(), DA.getText());
+						UsersController.save(new SpecialDoctor(specialty.getText(), num, username.getText(), pass.getText(), address.getText(), tell.getText(), name.getText(), familyName.getText(), DQ.getText(), DA.getText()));
 				} catch (Exception e) {
 					warning.setText(e.getMessage());
 					warning.setVisible(true);

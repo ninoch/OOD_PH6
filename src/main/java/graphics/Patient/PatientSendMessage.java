@@ -12,6 +12,7 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 
 import medicalinfo.diseaseandcure.Consult;
+import medicalinfo.diseaseandcure.ConsultController;
 import users.LoginedUser;
 import users.MedicateController;
 import users.reporters.doctor.Doctor;
@@ -87,7 +88,7 @@ public class PatientSendMessage extends JPanel {
 				else
 				{
 					warning.setVisible(false);
-					new Consult(LoginedUser.getUser().getUsername(), dr.get(ind).getUsername(), date.getText(), message.getText(), title.getText());
+					ConsultController.save(new Consult(LoginedUser.getUser().getUsername(), dr.get(ind).getUsername(), date.getText(), message.getText(), title.getText()));
 					try {
 						notice.call();
 					} catch (Exception e1) {

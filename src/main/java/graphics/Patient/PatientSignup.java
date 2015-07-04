@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
 
+import users.UsersController;
 import users.reporters.patient.Patient;
 
 import java.awt.Color;
@@ -185,7 +186,7 @@ public class PatientSignup extends JPanel {
 					return;
 				}
 				try {
-					new Patient(num, username.getText(), pass.getText(), "", tell.getText(), name.getText(), familyName.getText(), QP.getText(), AP.getText());
+					UsersController.save(new Patient(num, username.getText(), pass.getText(), "", tell.getText(), name.getText(), familyName.getText(), QP.getText(), AP.getText()));
 				} catch (Exception e) {
 					warning.setText(e.getMessage());
 					warning.setVisible(true);

@@ -1,9 +1,4 @@
-import graphics.LoginUI;
 
-
-
-
-import java.awt.EventQueue;
 
 import users.UsersController;
 import users.reporters.doctor.Doctor;
@@ -16,7 +11,7 @@ public class CopyOfMain {
 		UsersController.save(new Patient(1, "nazanin", "123", "Tehran, Iran, Azadi", "0231021", "nazanin", "alipourfard"				
 				+ "", "salam?", "khubam"));
 
-		GeneralDoctor saeed = new GeneralDoctor(23, "salione", "123", "Tehran, Iran, Azadi", "0231021", "saeedreza", "alipourfard", "salam?", "khubam");
+		GeneralDoctor saeed = (new GeneralDoctor(23, "salione", "123", "Tehran, Iran, Azadi", "0231021", "saeedreza", "alipourfard", "salam?", "khubam"));
 		
 		UsersController.save(saeed);
 		saeed.setIsActivated(true);
