@@ -77,8 +77,9 @@ public abstract class Report extends JPanel {
     };
     
     public List<Integer> make_array(List<String> dates){
+    	System.err.println("make_arrays" + dates.size());
     	if(dates.size() == 0)
-    		return null;
+    		return new ArrayList<Integer>();
 		int minYear = Integer.parseInt(dates.get(0).substring(0, 4));
 		int maxYear = Integer.parseInt(dates.get(dates.size() - 1).substring(0, 4));
 		List<Integer> ls = new ArrayList<Integer>();
@@ -99,6 +100,8 @@ public abstract class Report extends JPanel {
 					break;
 			}
 		}
+		for(int i = 0; i < ls.size(); i++)
+			System.err.println(ls.get(i));
         return ls;
     }
 	

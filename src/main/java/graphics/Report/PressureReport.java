@@ -64,6 +64,7 @@ public class PressureReport extends Report{
 	
 	List<Integer> getList(int minl, int maxl, String fromDate, String toDate)
 	{
+		System.err.println("getList");
 		ArrayList<BodyInfo> press = BodyInfoController.getBloodPressure(fromDate, toDate, minl, maxl);
 		Collections.sort(press, new Comparator<BodyInfo>() {
             public int compare(BodyInfo a, BodyInfo b) {
@@ -78,6 +79,7 @@ public class PressureReport extends Report{
 
 	@Override
 	void make_elements() {
+		System.err.println("make_elements");
 		elements = getList(Integer.parseInt(minPres.getText()), Integer.parseInt(maxPres.getText()), fromDate.getText(), toDate.getText());
 		
 	}

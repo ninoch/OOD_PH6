@@ -3,6 +3,7 @@ package graphics;
 import users.LoginedUser;
 import users.Users;
 import users.UsersController;
+import users.reporters.admin.Admin;
 import graphics.Admin.AdminUI;
 import graphics.Doctor.DoctorUI;
 import graphics.Patient.PatientUI;
@@ -109,6 +110,12 @@ public class LoginUI extends JFrame {
 	        		AdminUI a = new AdminUI();
 	        		a.setVisible(true);
 		        	LoginUI.this.dispose();
+		        	try {
+						new LoginedUser(new Admin());
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 	        	}
 	        	
 	        	else if( UsersController.login(username.getText(), passw.getText()))
