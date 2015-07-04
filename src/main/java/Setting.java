@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import users.MedicateController;
 import users.UsersController;
 import medicalinfo.BodyInfoController;
@@ -9,6 +13,22 @@ import medicalinfo.diseaseandcure.PrescriptionController;
 
 
 public class Setting {
+	
+	static{
+		try {
+			Scanner s = new Scanner(new File("Statics/setting.txt"));
+			String type = s.next();
+			System.err.println(type);
+			setDBType(type);
+			s.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	      
+		
+	}
 
 	public static void setDBType(String i) {
 		ConsultController.setType(i);
