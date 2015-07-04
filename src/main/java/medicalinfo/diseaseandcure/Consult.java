@@ -73,4 +73,23 @@ public class Consult implements Serializable{
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	
+	public String toString() {
+		
+		return new StringBuffer(" id: ")
+	 	   .append(String.valueOf(id))
+	 	   .append(" azki: ")
+	 	   .append(this.azki)
+	 	   .append(" towho: ")
+	 	   .append(this.towho)
+	 	   .append(" date: ")
+	 	   .append(this.date)
+	 	   .append(" msg: ")
+	 	   .append(this.msg)
+	 	   .append(" read: ")
+	 	   .append(this.read)
+	 	   .append(" title: ")
+	 	   .append(this.title)
+	 	   .toString();
+	}
 }

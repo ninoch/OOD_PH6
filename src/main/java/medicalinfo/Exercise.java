@@ -77,5 +77,24 @@ public class Exercise implements Serializable{
 		this.calory = calory;
 	}
 	
+	public String toString() {
+		return new StringBuffer(" id: ")
+	 	   .append(String.valueOf(id))
+	 	   .append(" patUser: ")
+	 	   .append(this.patUser)
+	 	   .append(" type: ")
+	 	   .append(this.type)
+	 	   .append(" minutes: ")
+	 	   .append(this.minutes)
+	 	   .append(" startTime: ")
+	 	   .append(this.startTime)
+	 	   .append(" endTime: ")
+	 	   .append(this.endTime)
+	 	   .append(" Calory: ")
+	 	   .append(this.calory)
+	 	   .append(" date: ")
+	 	   .append(this.date)
+	 	   .toString();
+	}
 	
 }

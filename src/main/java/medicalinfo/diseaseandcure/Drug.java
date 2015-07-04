@@ -49,4 +49,16 @@ public class Drug implements Serializable{
 		PresId = presId;
 	}
 	
+	public String toString() {
+		return new StringBuffer(" id: ")
+	 	   .append(String.valueOf(id))
+	 	   .append(" name: ")
+	 	   .append(this.name)
+	 	   .append(" dose: ")
+	 	   .append(this.dose)
+	 	   .append(" PresId: ")
+	 	   .append(this.PresId)
+	 	   .toString();
+	}
+	
 }

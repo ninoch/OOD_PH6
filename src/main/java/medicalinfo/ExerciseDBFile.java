@@ -1,5 +1,6 @@
 package medicalinfo;
 
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -10,74 +11,86 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ExerciseDBFile implements ExerciseDB {
-	int exsNum = 0;
+	private List<Exercise> allExes = null;
 	
 	private List<Exercise> readExercise() {
-		System.err.println("ExesNums: " + exsNum);
-		if(exsNum == 0)
-			return new ArrayList<Exercise>();
-		ObjectInputStream ois = null;
-		try {
-			ois = new ObjectInputStream(new FileInputStream("Statics/DB/Exercise.ser"));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		List<Exercise> ls = new ArrayList<Exercise>();
-		for(int i = 0; i < exsNum; i++)
+		if(allExes == null)
 		{
+			allExes = new ArrayList<Exercise>();
+			
+			ObjectInputStream ois = null;
 			try {
-				ls.add((Exercise) ois.readObject());
-			} catch (ClassNotFoundException e) {
+				ois = new ObjectInputStream(new FileInputStream("Statics/DB/Exercise.ser"));
+			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} catch(EOFException e){
+				return allExes;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.err.println("Exercise " + ls.get(i).getCalory() + " read from DB! ");
+			
+			while(true)
+			{
+				try {
+					Object obj = ois.readObject(); 
+					if(obj instanceof Exercise)
+						allExes.add((Exercise)(ois.readObject()));
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch(EOFException e) {
+					break;
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			try {
+				if(ois != null)
+					ois.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		try {
-			if(ois != null)
-				ois.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return ls;
+		return allExes;
 	}
-
-	@Override
-	public void save(Exercise exercise) {
+	
+	private void SaveChanges() {
 		ObjectOutputStream oos = null;
 		try {
-			oos = new ObjectOutputStream( new FileOutputStream("Statics/DB/Exercise.ser", true));
-		} catch (FileNotFoundException e) {
+			oos = new ObjectOutputStream( new FileOutputStream("Statics/DB/Exercise.ser", false));
+		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
-		try{
-			oos.writeObject(exercise);
-			System.err.println("Exercise " + exercise.getCalory() + " " + " Added to DB!");
-			exsNum ++;
-		   }catch(Exception ex){
-			   ex.printStackTrace();
-		   }finally {
-			   if(oos != null)
+		try {
+			oos.writeObject(allExes);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			if(oos != null)
 				try {
 					oos.close();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-		   }
+		}
+	}
+
+	@Override
+	public void save(Exercise exercise) {
+		if(allExes == null)
+			readExercise();
+		allExes.add(exercise);
+		System.err.println("Exercise " + exercise.getCalory() + " Added to DB! " );
+		SaveChanges();	
 	}
 
 	/****************** EASY *******************/
@@ -87,9 +100,9 @@ public class ExerciseDBFile implements ExerciseDB {
 			String startDate, String endDate) {
 		ArrayList<Exercise> ls = new ArrayList<Exercise>();
 		for(Exercise e : readExercise())
-			if(e.getStartTime().compareTo(startDate) < 0
-					&& e.getEndTime().compareTo(endDate) > 0
-					&& low <= e.getCalory()
+			if(e.getDate().compareTo(startDate) >= 0
+					&& e.getDate().compareTo(endDate) <= 0
+					&& e.getCalory() >= low
 					&& e.getCalory() <= high )
 				ls.add(e);
 		return ls;

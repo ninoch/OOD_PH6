@@ -1,12 +1,5 @@
-import graphics.LoginUI;
-
-
-
-
-
-
-import java.awt.EventQueue;
-
+import medicalinfo.Exercise;
+import medicalinfo.ExerciseController;
 import users.Medicate;
 import users.MedicateController;
 import users.UsersController;
@@ -17,8 +10,10 @@ import users.reporters.patient.Patient;
 public class CopyOfMain {
 	public static void main(String[] args) throws Exception {
 		Setting.setDBType("file");
-		UsersController.save(new Patient(1, "nazanin", "123", "Tehran, Iran, Azadi", "0231021", "nazanin", "alipourfard"				
-				+ "", "salam?", "khubam"));
+		Patient nazanin = new Patient(1, "nazanin", "123", "Tehran, Iran, Azadi", "0231021", "nazanin", "alipourfard"				
+				+ "", "salam?", "khubam");
+		nazanin.setIsActivated(true);
+		UsersController.save(nazanin);
 
 		GeneralDoctor saeed = new GeneralDoctor(23, "salione", "123", "Tehran, Iran, Azadi", "0231021", "saeedreza", "alipourfard", "salam?", "khubam");
 		
@@ -47,10 +42,16 @@ public class CopyOfMain {
 		for(Doctor d : MedicateController.findAllDoctors("nazanin", true))
 			System.err.println(d.getName());
 		
-		MedicateController.remove(mtest);
+//		MedicateController.remove(mtest);
 		System.err.println("third");
 		for(Patient p : MedicateController.patient_from_doctor("saeedreza", false))
 			System.err.println(p.getName());
+		
+		nazanin.addExercise("do", 12, "12:00", "12:12", 100, "1393/01/01");
+		
+		System.err.println("first");
+		for(Exercise e : ExerciseController.get_all_exercise("salione", "nazanin") )
+			System.err.println(e.getCalory());
 		
 		/*
 		EventQueue.invokeLater(new Runnable() {

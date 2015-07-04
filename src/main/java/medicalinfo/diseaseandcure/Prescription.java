@@ -44,5 +44,24 @@ public class Prescription implements Serializable{
 	public void setDate(String date) {
 		this.date = date;
 	}
+	
+	public long getId() {
+		return this.id;
+	}
+	
+	public void setId(long _id) {
+		this.id = _id;
+	}
+	
+	public String toString() {
+		
+		return new StringBuffer(" id: ")
+	 	   .append(String.valueOf(id))
+	 	   .append(" DiseaseId: ")
+	 	   .append(String.valueOf(DiseaseId))
+	 	   .append(" date: ")
+	 	   .append(this.date)
+	 	   .toString();
+	}
 
 }

@@ -6,7 +6,7 @@ import com.jvmhub.tutorial.App;
 public class Main {
 	public static void main(String[] args) throws Exception {
 		App.StartDB();
-		Setting.setDBType("Persistent");
+		Setting.setDBType("file");
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

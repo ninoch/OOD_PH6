@@ -78,4 +78,25 @@ public class BodyInfo implements Serializable{
 	public void setDate(String date) {
 		this.date = date;
 	}
+	
+	public String toString() {
+
+		return new StringBuffer(" id: ")
+	 	   .append(String.valueOf(id))
+	 	   .append(" docUser: ")
+	 	   .append(this.docUser)
+	 	   .append(" patUser: ")
+	 	   .append(this.patUser)
+	 	   .append(" height: ")
+	 	   .append(this.height)
+	 	   .append(" weight: ")
+	 	   .append(this.weight)
+	 	   .append(" bloodPressure: ")
+	 	   .append(this.bloodPressure)
+	 	   .append(" bloodSugar: ")
+	 	   .append(this.bloodSugar)
+	 	   .append(" date: ")
+	 	   .append(this.date)
+	 	   .toString();
+	}
 }

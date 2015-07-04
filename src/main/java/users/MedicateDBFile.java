@@ -14,7 +14,6 @@ import users.reporters.doctor.Doctor;
 import users.reporters.patient.Patient;
 
 public class MedicateDBFile implements MedicateDB {
-	private int mediNums = 0;
 	private List<Medicate> allMedicates = null;
 	
 	
@@ -35,18 +34,21 @@ public class MedicateDBFile implements MedicateDB {
 				e.printStackTrace();
 			}
 			
-			for(int i = 0; i < mediNums; i++)
+			while(true)
 			{
 				try {
-					allMedicates.add((Medicate) ois.readObject());
+					Object obj = ois.readObject(); 
+					if(obj instanceof Medicate)
+						allMedicates.add((Medicate)(ois.readObject()));
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch(EOFException e){
+					break;
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				System.err.println("Medicate " + allMedicates.get(i).getToDoctor() + " " + allMedicates.get(i).getPatient() + " read from DB!");
 			}
 			try {
 				if(ois != null)
@@ -102,9 +104,6 @@ public class MedicateDBFile implements MedicateDB {
 			if(el.getPatient().equals(m.getPatient()) 
 					&& el.getToDoctor().equals(m.getToDoctor()))
 				el = m;
-		System.err.println("**********");
-		for(int i = 0; i < mediNums; i++)
-			System.err.println(allMedicates.get(i).getPatient());
 		SaveChanges();
 	}
 
@@ -119,9 +118,6 @@ public class MedicateDBFile implements MedicateDB {
 				allMedicates.remove(i);
 				break;
 			}
-		System.err.println("**********");
-		for(int i = 0; i < mediNums; i++)
-			System.err.println(allMedicates.get(i).getPatient());
 		SaveChanges();
 	}
 	/****************** EASY *******************/

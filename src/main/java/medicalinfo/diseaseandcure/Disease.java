@@ -69,4 +69,20 @@ public class Disease implements Serializable{
 	public String getDate() {
 		return this.date;
 	}
+	
+	public String toString() {
+		return new StringBuffer(" id: ")
+	 	   .append(String.valueOf(id))
+	 	   .append(" docUser: ")
+	 	   .append(this.docUser)
+	 	   .append(" patUser: ")
+	 	   .append(this.patUser)
+	 	   .append(" name: ")
+	 	   .append(this.name)
+	 	   .append(" symptoms: ")
+	 	   .append(this.symptoms)
+	 	   .append(" date: ")
+	 	   .append(this.date)
+	 	   .toString();
+	}
 }

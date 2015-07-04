@@ -1,5 +1,6 @@
 package users;
 
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -14,7 +15,6 @@ import users.reporters.patient.Patient;
 import users.reporters.doctor.SpecialDoctor;
 
 public class UsersDBFile implements UsersDB {
-	private int usersNum = 0;
 	private List<Users> allUsers = null;
 
 	private List<Users> readUsers() {
@@ -28,22 +28,28 @@ public class UsersDBFile implements UsersDB {
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (IOException e) {
+			} catch(EOFException e){
+				return allUsers;
+			}
+			catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			for(int i = 0; i < usersNum; i++)
+			while(true)
 			{
 				try {
-					allUsers.add((Users) ois.readObject());
+					Object obj = ois.readObject(); 
+					if(obj instanceof Users)
+						allUsers.add((Users)(ois.readObject()));
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (IOException e) {
+				}catch(EOFException e){
+					break;
+				}catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				System.err.println("User " + allUsers.get(i).getUsername() + " read from DB!");
 			}
 			try {
 				if(ois != null)
@@ -99,9 +105,6 @@ public class UsersDBFile implements UsersDB {
 		for(Users u : allUsers)
 			if(u.getUsername().equals(m.getUsername()))
 				u = m;
-		System.err.println("**********");
-		for(int i = 0; i < usersNum; i++)
-			System.err.println(allUsers.get(i));
 		SaveChanges();
 	}
 	
