@@ -57,10 +57,6 @@ public class Medicate implements Serializable{
 		isAccepted = b;
 	}
 	
-	public long getId(){
-		return this.id;
-	}
-	
 	public String toString() {
 		return new StringBuffer(" id: ")
 	 	   .append(String.valueOf(id))

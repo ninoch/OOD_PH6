@@ -1,5 +1,6 @@
 package users;
 
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -28,8 +29,9 @@ public class MedicateDBFile implements MedicateDB {
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}catch(EOFException e){
+				return allMedicates;
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -88,6 +90,7 @@ public class MedicateDBFile implements MedicateDB {
 		if(allMedicates == null)
 			readMedicates();
 		allMedicates.add(m);
+		System.err.println("Medicate " + m.getPatient() + " Added to DB! " );
 		SaveChanges();
 	}
 	
@@ -96,7 +99,8 @@ public class MedicateDBFile implements MedicateDB {
 		if(allMedicates == null)
 			readMedicates();
 		for(Medicate el : allMedicates)
-			if(el.getId() == m.getId())
+			if(el.getPatient().equals(m.getPatient()) 
+					&& el.getToDoctor().equals(m.getToDoctor()))
 				el = m;
 		System.err.println("**********");
 		for(int i = 0; i < mediNums; i++)
@@ -109,7 +113,8 @@ public class MedicateDBFile implements MedicateDB {
 		if(allMedicates == null)
 			readMedicates();
 		for(int i = 0; i < allMedicates.size(); i++)
-			if(allMedicates.get(i).getId() == m.getId())
+			if(allMedicates.get(i).getPatient().equals(m.getPatient()) 
+				&& allMedicates.get(i).getToDoctor().equals(m.getToDoctor()))
 			{
 				allMedicates.remove(i);
 				break;

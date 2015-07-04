@@ -3,8 +3,12 @@ import graphics.LoginUI;
 
 
 
+
+
 import java.awt.EventQueue;
 
+import users.Medicate;
+import users.MedicateController;
 import users.UsersController;
 import users.reporters.doctor.Doctor;
 import users.reporters.doctor.GeneralDoctor;
@@ -31,6 +35,22 @@ public class CopyOfMain {
 		for(Doctor d : UsersController.get_doctors_by_name("ali", true))
 			System.err.println(d.getName() + " " + d.getFamilyname());
 		
+		Medicate mtest = new Medicate("salione", "nazanin");
+		MedicateController.save(mtest);
+		System.err.println("first");
+		for(Doctor d : MedicateController.findAllDoctors("nazanin", true))
+			System.err.println(d.getName());
+		mtest.setIsAccepted(true);
+		MedicateController.merge(mtest);
+
+		System.err.println("second");
+		for(Doctor d : MedicateController.findAllDoctors("nazanin", true))
+			System.err.println(d.getName());
+		
+		MedicateController.remove(mtest);
+		System.err.println("third");
+		for(Patient p : MedicateController.patient_from_doctor("saeedreza", false))
+			System.err.println(p.getName());
 		
 		/*
 		EventQueue.invokeLater(new Runnable() {
