@@ -36,12 +36,30 @@ public class DiseaseController {
 	}
 
 	public static void save(Disease disease) {
-		//TODO check authentication
+		if(!LoginedUser.getUser().getUsername().equals(disease.getDocUser()))
+		{
+			try {
+				throw new Exception();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		ddb.save(disease);
 	}
 
 	public static Disease getDisease(String docUser, String patUser,
 			String disName) {
+		if(!LoginedUser.getUser().getUsername().equals(docUser) && 
+				!LoginedUser.getUser().getUsername().equals(patUser))
+		{
+			try {
+				throw new Exception();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return ddb.getDisease(docUser, patUser, disName);
 	}
 	public static ArrayList<Disease> getDiseaseByDate(String name, 
@@ -51,6 +69,7 @@ public class DiseaseController {
 	}
 	
 	public static List<Drug> getAllDrugs(long disID){
+		
 		return ddb.getAllDrugs(disID);
 	}
 
