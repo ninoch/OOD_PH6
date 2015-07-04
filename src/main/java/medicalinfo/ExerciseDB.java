@@ -8,5 +8,6 @@ public interface ExerciseDB {
 
 	ArrayList<Exercise> getExerciseByDate(int low, int high,
 			String startDate, String endDate);
+	ArrayList<Exercise> getAllExercise(String username);
 
 }

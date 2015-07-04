@@ -78,8 +78,6 @@ public class SugarReport extends Report{
 
 	@Override
 	void make_elements() {
-		// TODO Auto-generated method stub
-		title = "Drug Number - Time ( day )";
 		elements = getList(Integer.parseInt(minSug.getText()), Integer.parseInt(maxSug.getText()), fromDate.getText(), toDate.getText());
 		
 	}

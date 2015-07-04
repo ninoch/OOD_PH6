@@ -4,8 +4,10 @@ import graphics.BackGroundImage;
 import graphics.Layout;
 import graphics.LoginUI;
 import graphics.DocAdminCommons.PatientSearch;
-import graphics.Report.DrugReport;
+import graphics.Report.ActivityReport;
 import graphics.Report.IllnessReport;
+import graphics.Report.PressureReport;
+import graphics.Report.SugarReport;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -21,7 +23,11 @@ public class AdminUI extends Layout {
 		setTitle("\u0645\u062F\u06CC\u0631\u06CC\u062A");
 		
 		IllnessReport illReport = new IllnessReport();
-		DrugReport drugReport = new DrugReport();
+		PressureReport presReport = new PressureReport();
+		SugarReport sugReport = new SugarReport();
+		ActivityReport actReport = new ActivityReport();
+		
+		
 		AdminPendingUsers allPendings = new AdminPendingUsers();
 		AdminAllPatients allPatients = new AdminAllPatients();
 		AdminAllDoctors allDoctors = new AdminAllDoctors();
@@ -34,7 +40,10 @@ public class AdminUI extends Layout {
 		content.add(allDoctors, "docs");
 		content.add(allPatients, "patis");
 		content.add(illReport, "illnessReport");
-		content.add(drugReport, "drugReport");
+		content.add(presReport, "presReport");
+		content.add(sugReport, "sugReport");
+		content.add(actReport, "actReport");
+		
 		content.add(allPendings, "pendings");
 		content.add(searchPanel, "psearch");
 		
@@ -61,19 +70,47 @@ public class AdminUI extends Layout {
 		});
 		mnNewMenu.add(getIllnessReport);
 		
-		JMenuItem getDrugReport = new JMenuItem("\u062F\u0627\u0631\u0648 \u0647\u0627");
-		getDrugReport.addActionListener(new ActionListener() {
+		JMenuItem getPressReport = new JMenuItem("\u0641\u0634\u0627\u0631 \u062E\u0648\u0646");
+		getPressReport.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					drugReport.notice.call();
+					presReport.notice.call();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				cl.show(content, "drugReport");
+				cl.show(content, "presReport");
 			}
 		});
-		mnNewMenu.add(getDrugReport);
+		mnNewMenu.add(getPressReport);
+		
+		JMenuItem getSugReport = new JMenuItem("\u0642\u0646\u062F \u062E\u0648\u0646");
+		getSugReport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					sugReport.notice.call();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				cl.show(content, "sugReport");
+			}
+		});
+		mnNewMenu.add(getSugReport);
+		
+		JMenuItem getActivityReport = new JMenuItem("\u0641\u0639\u0627\u0644\u06CC\u062A \u0628\u062F\u0646\u06CC");
+		getActivityReport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					actReport.notice.call();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				cl.show(content, "actReport");
+			}
+		});
+		mnNewMenu.add(getActivityReport);
 		
 		JMenu users = new JMenu("\u06A9\u0627\u0631\u0628\u0631\u0627\u0646");
 		menuBar.add(users);
@@ -132,14 +169,6 @@ public class AdminUI extends Layout {
 		
 		JMenu manage = new JMenu("\u0645\u062F\u06CC\u0631\u06CC\u062A");
 		menuBar.add(manage);
-		
-		JMenuItem profile = new JMenuItem("\u067E\u0631\u0648\u0641\u0627\u06CC\u0644");
-		profile.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cl.show(content, "profile");
-			}
-		});
-		manage.add(profile);
 		
 		JMenuItem logout = new JMenuItem("\u062E\u0631\u0648\u062C");
 		logout.addActionListener(new ActionListener() {

@@ -66,8 +66,6 @@ public class IllnessReport extends Report {
 
 	@Override
 	void make_elements() {
-		// TODO Auto-generated method stub
-		title = "Illness Number - Time ( day )"; 
 		elements = getList(illnessName.getText(), fromDate.getText(), toDate.getText());
 		
 	}

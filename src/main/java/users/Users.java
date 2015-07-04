@@ -8,6 +8,8 @@ import javax.persistence.Id;
 
 import medicalinfo.BodyInfo;
 import medicalinfo.BodyInfoController;
+import medicalinfo.Exercise;
+import medicalinfo.ExerciseController;
 import medicalinfo.diseaseandcure.Consult;
 import medicalinfo.diseaseandcure.ConsultController;
 import medicalinfo.diseaseandcure.Disease;
@@ -63,6 +65,10 @@ public abstract class Users implements Serializable{
 	}
 	public ArrayList<Disease> get_all_disease(String username){
 		return DiseaseController.get_all_disease(getUsername(), username);
+	}
+	
+	public ArrayList<Exercise> get_all_exercise(String username) {
+		return ExerciseController.get_all_exercise(getUsername(), username);
 	}
 
 	private boolean validate_names(String f) {

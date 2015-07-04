@@ -61,5 +61,13 @@ public class ExerciseDBPersistent implements ExerciseDB {
 				.add(Restrictions.le("calory", high))
 				.list();
 	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public ArrayList<Exercise> getAllExercise(String username) {
+		return (ArrayList<Exercise>) App.get_session()
+				.createCriteria(Exercise.class)
+				.add(Restrictions.eq("patUser", username))
+				.list();
+	}
 
 }

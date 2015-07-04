@@ -34,12 +34,12 @@ public class Illness extends JPanel {
 	private JTextField DrugName;
 	private JLabel label_2;
 	private JLabel label_4;
-	private JLabel label_5;
 	private JLabel label_6;
 	private Disease diseas = null;
 	private Patient patient = null;
 	private DefaultTableModel model;
 	private JTextArea illnessDescription;
+	private JButton add, addDrug;
 	
 	void make_design(Callable<Void> notice) {
 
@@ -106,7 +106,7 @@ public class Illness extends JPanel {
 		DrugName.setBounds(245, 302, 160, 20);
 		add(DrugName);
 		
-		JButton add = new JButton("\u062B\u0628\u062A");
+		add = new JButton("\u062B\u0628\u062A");
 		add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(diseas == null)
@@ -126,6 +126,7 @@ public class Illness extends JPanel {
 				}
 				*/
 				// TODO
+				clear();
 				try {
 					notice.call();
 				} catch (Exception e1) {
@@ -142,7 +143,7 @@ public class Illness extends JPanel {
 		label_3.setBounds(278, 130, 192, 14);
 		add(label_3);
 		
-		JButton addDrug = new JButton("\u0627\u0641\u0632\u0648\u062F\u0646 \u062F\u0627\u0631\u0648");
+		addDrug = new JButton("\u0627\u0641\u0632\u0648\u062F\u0646 \u062F\u0627\u0631\u0648");
 		addDrug.setBounds(146, 366, 89, 23);
 		addDrug.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
@@ -162,11 +163,6 @@ public class Illness extends JPanel {
 		label_4.setBounds(399, 336, 71, 14);
 		add(label_4);
 		
-		label_5 = new JLabel("\u062A\u0639\u062F\u0627\u062F:");
-		label_5.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_5.setBounds(415, 366, 55, 14);
-		add(label_5);
-		
 		label_6 = new JLabel("\u062A\u0648\u0636\u06CC\u062D\u0627\u062A:");
 		label_6.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_6.setBounds(80, 11, 192, 14);
@@ -180,7 +176,6 @@ public class Illness extends JPanel {
 	}
 
 	public Illness(Callable<Void> notice, Disease _d) {
-		System.err.println("here is ................. ");
 		make_design(notice);
 		setDisease(_d);
 	}
@@ -191,6 +186,14 @@ public class Illness extends JPanel {
 		illnessDescription.setText("");		
 		DrugUse.setText("");
 		DrugName.setText("");
+		
+		date.setEnabled(true);
+		illnessName.setEnabled(true);
+		illnessDescription.setEnabled(true);
+		DrugUse.setEnabled(true);
+		DrugName.setEnabled(true);
+		add.setVisible(true);
+		addDrug.setVisible(true);
 		
 		for(int i = table.getRowCount() - 1; i >= 0; i--)
 			model.removeRow(i);
@@ -205,6 +208,14 @@ public class Illness extends JPanel {
 		illnessDescription.setText(diseas.getSyptoms());
 		for(int i = 0; i < drugs.size(); i++)
 			model.addRow(new Object[]{drugs.get(i).getName(), drugs.get(i).getDose()});
+		
+		date.setEnabled(false);
+		illnessName.setEnabled(false);
+		illnessDescription.setEnabled(false);
+		DrugUse.setEnabled(false);
+		DrugName.setEnabled(false);
+		add.setVisible(false);
+		addDrug.setVisible(false);
 		
 		this.repaint();
 	}

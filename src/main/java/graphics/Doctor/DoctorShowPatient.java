@@ -1,10 +1,9 @@
 package graphics.Doctor;
-import graphics.Report.Activity;
+import graphics.Report.ActivityList;
 import graphics.Report.Health;
 import graphics.Report.HealthList;
 import graphics.Report.Illness;
 import graphics.Report.IllnessList;
-import graphics.Report.PatientReport;
 
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -33,18 +32,16 @@ public class DoctorShowPatient extends JPanel {
 		this.setLayout(new CardLayout());
 		this.setSize(new Dimension(480, 400));
 		
-		PatientReport patiReport = new PatientReport(this.notice);
 		HealthList hl = new HealthList();
 		IllnessList il = new IllnessList();
+		ActivityList al = new ActivityList();
 		
-		
-		this.add(new Activity(this.notice), "activity");
 		this.add(new Health(this.notice, patient), "health");
 		this.add(new Illness(this.notice, patient), "illness");
 		this.add(new DoctorToDoctor(this.notice, patient), "consult");
-		this.add(patiReport, "reports");
 		this.add(hl, "healthList");
 		this.add(il, "illnessList");
+		this.add(al, "activityList");
 
 		select = new JPanel();
 		select.setLayout(null);
@@ -94,7 +91,8 @@ public class DoctorShowPatient extends JPanel {
 		JButton activity = new JButton("\u0641\u0639\u0627\u0644\u06CC\u062A \u0628\u062F\u0646\u06CC");
 		activity.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-		        cl.show(DoctorShowPatient.this, "activity");
+				al.setPatient(patient);
+		        cl.show(DoctorShowPatient.this, "activityList");
 			}
 		});
 		activity.setBounds(337, 187, 133, 42);
@@ -120,20 +118,6 @@ public class DoctorShowPatient extends JPanel {
 		illness.setBounds(337, 293, 133, 42);
 		select.add(illness);
 		
-		JButton archive = new JButton("\u0622\u0631\u0634\u06CC\u0648 \u0628\u06CC\u0645\u0627\u0631");
-		archive.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					notice.call();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
-		archive.setBounds(194, 187, 133, 42);
-		select.add(archive);
-		
 		JButton back = new JButton("\u0628\u0627\u0632\u06AF\u0634\u062A");
 		back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -154,7 +138,7 @@ public class DoctorShowPatient extends JPanel {
 				cl.show(DoctorShowPatient.this, "consult");
 			}
 		});
-		consult.setBounds(194, 240, 133, 42);
+		consult.setBounds(194, 187, 133, 42);
 		select.add(consult);
 		
 		JLabel label_4 = new JLabel("\u0639\u0645\u0644\u06CC\u0627\u062A \u0631\u0648\u06CC \u0628\u06CC\u0645\u0627\u0631:");
@@ -162,33 +146,13 @@ public class DoctorShowPatient extends JPanel {
 		label_4.setBounds(194, 162, 133, 20);
 		select.add(label_4);
 		
-		JLabel label_5 = new JLabel("\u06AF\u0632\u0627\u0631\u0634 \u06AF\u06CC\u0631\u06CC:");
-		label_5.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_5.setBounds(32, 159, 152, 20);
-		select.add(label_5);
-		
-		JButton viewReports = new JButton("\u0645\u0634\u0627\u0647\u062F\u0647 \u06AF\u0632\u0627\u0631\u0634\u0627\u062A");
-		viewReports.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					patiReport.notice.call();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				cl.show(DoctorShowPatient.this, "reports");
-			}
-		});
-		viewReports.setBounds(51, 187, 133, 42);
-		select.add(viewReports);
-		
 		JButton addDisease = new JButton("\u062B\u0628\u062A \u0628\u06CC\u0645\u0627\u0631\u06CC \u0648 \u0646\u0633\u062E\u0647");
 		addDisease.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cl.show(DoctorShowPatient.this, "illness");
 			}
 		});
-		addDisease.setBounds(194, 347, 133, 42);
+		addDisease.setBounds(194, 293, 133, 42);
 		select.add(addDisease);
 		
 		JButton addHealth = new JButton("\u062B\u0628\u062A \u0648\u0636\u0639\u06CC\u062A \u0628\u062F\u0646\u06CC");
@@ -197,7 +161,7 @@ public class DoctorShowPatient extends JPanel {
 				cl.show(DoctorShowPatient.this, "health");
 			}
 		});
-		addHealth.setBounds(194, 293, 133, 42);
+		addHealth.setBounds(194, 240, 133, 42);
 		select.add(addHealth);
 	}
 

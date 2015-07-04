@@ -78,8 +78,6 @@ public class ActivityReport extends Report {
 
 	@Override
 	void make_elements() {
-		// TODO Auto-generated method stub
-		title = "Illness Number - Time ( day )"; 
 		elements = getList(Integer.parseInt(minCal.getText()), Integer.parseInt(maxCal.getText()),
 						   fromDate.getText(), toDate.getText());
 		

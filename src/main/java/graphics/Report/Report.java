@@ -21,7 +21,7 @@ public abstract class Report extends JPanel {
 	private JLabel warning;
 	
 	protected String[] months = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
-	protected String title;
+	protected String title = "# of patient - Time ( month )";
 	protected List<Integer> elements;
 	protected JPanel select;
 
@@ -77,18 +77,26 @@ public abstract class Report extends JPanel {
     };
     
     public List<Integer> make_array(List<String> dates){
+    	if(dates.size() == 0)
+    		return null;
 		int minYear = Integer.parseInt(dates.get(0).substring(0, 4));
 		int maxYear = Integer.parseInt(dates.get(dates.size() - 1).substring(0, 4));
 		List<Integer> ls = new ArrayList<Integer>();
 		int ind = 0;
-		for(int i = minYear; i < maxYear; i++) {
+		for(int i = minYear; i <= maxYear; i++) {
 			for(int j = 0; j < months.length; j++)
 			{
 				int t = 0;
-				while(Integer.parseInt(dates.get(ind).substring(0, 4)) == i &&
-						dates.get(ind).substring(5, 2).equals(months[j]))
+				while(ind < dates.size() 
+						&& Integer.parseInt(dates.get(ind).substring(0, 4)) == i 
+						&& dates.get(ind).substring(5, 7).equals(months[j]))
+				{
 					t++;
-				ls.add(t);
+					ind ++;
+				}
+				ls.add(Integer.valueOf(t));
+				if(ind == dates.size())
+					break;
 			}
 		}
         return ls;

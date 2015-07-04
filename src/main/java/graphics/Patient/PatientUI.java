@@ -3,6 +3,7 @@ package graphics.Patient;
 import graphics.BackGroundImage;
 import graphics.Layout;
 import graphics.LoginUI;
+import graphics.Report.Activity;
 import graphics.Report.ActivityList;
 import graphics.Report.HealthList;
 import graphics.Report.IllnessList;
@@ -32,6 +33,7 @@ public class PatientUI extends Layout {
 		PatientReport patiReport = new PatientReport(this.notice);
 		HealthList hl = new HealthList();
 		IllnessList il = new IllnessList();
+		ActivityList al = new ActivityList();
 		PatientInbox pinbox = new PatientInbox();
 		PatientsAllDoctors alldocs = new PatientsAllDoctors();
 		
@@ -41,8 +43,8 @@ public class PatientUI extends Layout {
 		content.add(new PatientSendMessage(this.notice), "send");
 		content.add(alldocs, "alldocs");
 		content.add(new PatientSelectDoctor(this.notice), "changedoc");
-		content.add(new PatientAddActivity(this.notice), "activity");
-		content.add(new ActivityList(), "activityReport");
+		content.add(new Activity(this.notice), "activity");
+		content.add(al, "activityReport");
 		content.add(il, "illnessReport");
 		content.add(hl, "healthReport");
 		content.add(patiReport, "patientReport");
@@ -96,6 +98,7 @@ public class PatientUI extends Layout {
 		users.add(activityReport);
 		activityReport.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				al.setPatient((Patient) ( LoginedUser.getUser()));
 				cl.show(content, "activityReport");
 			}
 		});

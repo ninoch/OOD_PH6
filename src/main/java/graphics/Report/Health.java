@@ -29,6 +29,7 @@ public class Health extends JPanel {
 	private JTextField sugar;
 	private BodyInfo info = null;
 	private Patient patient = null;
+	private JButton addAll;
 	
 	private void make_design(Callable<Void> notice) {
 		this.setSize(new Dimension(480, 400));
@@ -45,12 +46,12 @@ public class Health extends JPanel {
 		add(weight);
 		weight.setColumns(10);
 		
-		JLabel lblKg = new JLabel("Ÿàÿ≤ŸÜ ( kg ):");
+		JLabel lblKg = new JLabel("Ê“‰ ( kg ):");
 		lblKg.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblKg.setBounds(304, 63, 166, 14);
 		add(lblKg);
 		
-		JLabel lblCm = new JLabel("ŸÇÿØ ( cm ) :");
+		JLabel lblCm = new JLabel("ﬁœ( cm ) :");
 		lblCm.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCm.setBounds(304, 11, 166, 14);
 		add(lblCm);
@@ -72,7 +73,7 @@ public class Health extends JPanel {
 		label_3.setBounds(261, 331, 209, 14);
 		add(label_3);
 		
-		JButton addAll = new JButton("\u062B\u0628\u062A");
+		addAll = new JButton("\u062B\u0628\u062A");
 		addAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(info == null)
@@ -101,7 +102,7 @@ public class Health extends JPanel {
 		addAll.setBounds(29, 355, 89, 23);
 		add(addAll);
 		
-		JLabel ds = new JLabel("ŸÅÿ¥ÿßÿ± ÿÆŸàŸÜ ( mmHg ) :\r\n\r\n");
+		JLabel ds = new JLabel("›‘«— ŒÊ‰( mmHg ) :");
 		ds.setHorizontalAlignment(SwingConstants.RIGHT);
 		ds.setBounds(314, 115, 156, 14);
 		add(ds);
@@ -140,6 +141,13 @@ public class Health extends JPanel {
 		date.setText("");
 		weight.setText("");
 		value.setText("");
+
+		pressure.setEnabled(true);
+		sugar.setEnabled(true);
+		date.setEnabled(true);
+		weight.setEnabled(true);
+		value.setEnabled(true);
+		addAll.setVisible(true);
 	}
 	
 
@@ -151,5 +159,13 @@ public class Health extends JPanel {
 		date.setText(info.getDate());
 		weight.setText(String.valueOf(info.getWeight()));
 		value.setText(String.valueOf(info.getHeight()));
+		
+
+		pressure.setEnabled(false);
+		sugar.setEnabled(false);
+		date.setEnabled(false);
+		weight.setEnabled(false);
+		value.setEnabled(false);
+		addAll.setVisible(false);
 	}
 }
