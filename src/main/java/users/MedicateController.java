@@ -48,6 +48,13 @@ public class MedicateController {
 		mdb.save(medicate);
 	}
 	public static ArrayList<Patient> get_doctor_patient(String docUser) {
+		if(!LoginedUser.getUser().getUsername().equals(docUser))
+			try {
+				throw new Exception();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		return mdb.get_doctor_patient(docUser);
 	}
 	public static boolean has_access(String username, String username2) {
@@ -56,6 +63,13 @@ public class MedicateController {
 				username.equals("admin");
 	}
 	public static void NewRefrence(String thisDoc, String other, String pat) {
+		if(!LoginedUser.getUser().getUsername().equals(thisDoc))
+			try {
+				throw new Exception();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		if(!is_medicating(thisDoc, pat))
 			try {
 				throw new Exception();
@@ -67,6 +81,13 @@ public class MedicateController {
 		new Medicate(thisDoc, other, pat);
 	}
 	public static ArrayList<Medicate> showAllRef(String username) {
+		if(!LoginedUser.getUser().getUsername().equals(username))
+			try {
+				throw new Exception();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		return mdb.findAllRefs(username);
 	}
 	

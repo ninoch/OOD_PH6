@@ -47,8 +47,9 @@ public class BodyInfoController {
 	}
 	public static ArrayList<BodyInfo> getBloodSugar(String startDate,
 			String endDate, int low, int high){
-		 Users a = LoginedUser.getUser();
+		Users a = LoginedUser.getUser();
 		return bid.getBloodSugar(a.getUsername(), startDate, endDate, low, high);
+		
 	}
 	public static ArrayList<BodyInfo> getBloodPressure(String startDate,
 			String endDate, double low, double high){

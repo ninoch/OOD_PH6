@@ -1,6 +1,8 @@
 package medicalinfo;
 
 import java.util.ArrayList;
+
+import users.LoginedUser;
 import users.MedicateController;
 
 public class ExerciseController {
@@ -24,7 +26,12 @@ public class ExerciseController {
 	
 	public static ArrayList<Exercise> getExerciseByDate(int low, int high, String startDate, String endDate)
 	{
-		return edb.getExerciseByDate(low, high, startDate, endDate);
+		ArrayList<Exercise> res = edb.getExerciseByDate(low, high, startDate, endDate);
+		for(Exercise e : res){
+			if(!MedicateController.is_medicating(LoginedUser.getUser().getUsername(), e.getPatUser()))
+				res.remove(e);
+		}
+		return res;
 	}
 	
 	public static ArrayList<Exercise> get_all_exercise(String username, String username2) 

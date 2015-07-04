@@ -1,0 +1,22 @@
+import graphics.LoginUI;
+
+import java.awt.EventQueue;
+
+
+
+public class ShitMain {
+	public static void main(String[] args) throws Exception {
+		//App.StartDB();
+		//Setting.setDBType("file");
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					LoginUI frame = new LoginUI();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+}
