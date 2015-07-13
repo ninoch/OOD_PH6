@@ -23,7 +23,7 @@ public class Medicate implements Serializable{
 		toDoctorUser = d;
 		patientUser = p;
 		isAccepted = false;
-		MedicateController.save(this);
+//		MedicateController.save(this);
 	}
 	public Medicate(String from, String to, String patient)
 	{
@@ -31,7 +31,7 @@ public class Medicate implements Serializable{
 		toDoctorUser = to;
 		patientUser = patient;
 		isAccepted = false;
-		MedicateController.save(this);
+//		MedicateController.save(this);
 	}
 	
 	public Medicate()

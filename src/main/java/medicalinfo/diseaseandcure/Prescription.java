@@ -2,12 +2,10 @@ package medicalinfo.diseaseandcure;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 @SuppressWarnings("serial")
 @Entity
 public class Prescription implements Serializable{
@@ -27,7 +25,8 @@ public class Prescription implements Serializable{
 	}
 	public void add_drug(String name, int dose)
 	{
-		new Drug(name, dose, DiseaseId);
+//		new Drug(name, dose, DiseaseId);
+		DrugDBController.save(new Drug(name, dose, DiseaseId));
 	}
 	public Long getDiseaseId() {
 		return DiseaseId;

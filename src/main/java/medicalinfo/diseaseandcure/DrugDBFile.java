@@ -8,11 +8,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class DrugDBFile implements DrugDB {
 	List<Drug> allDrugs = null;
 	
+	@SuppressWarnings("unchecked")
 	private List<Drug> readDrugs() {
 		if(allDrugs == null)
 		{
@@ -34,8 +36,8 @@ public class DrugDBFile implements DrugDB {
 			{
 				try {
 					Object obj = ois.readObject(); 
-					if(obj instanceof Drug)
-						allDrugs.add((Drug)(ois.readObject()));
+					if(obj instanceof ArrayList)
+						allDrugs.addAll((Collection<? extends Drug>) obj);
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

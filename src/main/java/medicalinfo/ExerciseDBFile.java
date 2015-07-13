@@ -8,11 +8,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class ExerciseDBFile implements ExerciseDB {
 	private List<Exercise> allExes = null;
 	
+	@SuppressWarnings("unchecked")
 	private List<Exercise> readExercise() {
 		if(allExes == null)
 		{
@@ -35,8 +37,8 @@ public class ExerciseDBFile implements ExerciseDB {
 			{
 				try {
 					Object obj = ois.readObject(); 
-					if(obj instanceof Exercise)
-						allExes.add((Exercise)(ois.readObject()));
+					if(obj instanceof ArrayList)
+						allExes.addAll((Collection<? extends Exercise>) obj);
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -99,6 +101,7 @@ public class ExerciseDBFile implements ExerciseDB {
 	public ArrayList<Exercise> getExerciseByDate(int low, int high,
 			String startDate, String endDate) {
 		ArrayList<Exercise> ls = new ArrayList<Exercise>();
+		System.err.println("khkhkhkh: " + readExercise().size());
 		for(Exercise e : readExercise())
 			if(e.getDate().compareTo(startDate) >= 0
 					&& e.getDate().compareTo(endDate) <= 0

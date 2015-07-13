@@ -8,11 +8,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class PrescriptionDBFile implements PrescriptionDB {
 	List<Prescription> allPres = null;
 	
+	@SuppressWarnings("unchecked")
 	private List<Prescription> readPrescriptions() {
 		if(allPres == null)
 		{
@@ -34,8 +36,8 @@ public class PrescriptionDBFile implements PrescriptionDB {
 			{
 				try {
 					Object obj = ois.readObject(); 
-					if(obj instanceof Prescription)
-						allPres.add((Prescription)(ois.readObject()));
+					if(obj instanceof ArrayList)
+						allPres.addAll((Collection<? extends Prescription>) obj);
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -87,7 +89,7 @@ public class PrescriptionDBFile implements PrescriptionDB {
 	public void save(Prescription d) {
 		if(allPres == null)
 			readPrescriptions();
-		d.setId(allPres.size() + 1);
+		d.setId(d.getDiseaseId());
 		allPres.add(d);
 		System.err.println("Prescription " + d.getDate() + " Added to DB! " );
 		SaveChanges();

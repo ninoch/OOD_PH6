@@ -15,7 +15,7 @@ public class CopyOfMain {
 		nazanin.setIsActivated(true);
 		UsersController.save(nazanin);
 
-		GeneralDoctor saeed = new GeneralDoctor(23, "salione", "123", "Tehran, Iran, Azadi", "0231021", "saeedreza", "alipourfard", "salam?", "khubam");
+		GeneralDoctor saeed = (new GeneralDoctor(23, "salione", "123", "Tehran, Iran, Azadi", "0231021", "saeedreza", "alipourfard", "salam?", "khubam"));
 		
 		UsersController.save(saeed);
 		saeed.setIsActivated(true);

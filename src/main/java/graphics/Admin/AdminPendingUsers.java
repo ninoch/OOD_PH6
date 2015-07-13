@@ -6,13 +6,14 @@ import java.util.List;
 
 import graphics.ListAll;
 import graphics.Doctor.DoctorProfile;
-import graphics.Patient.PatientProfile;
+import graphics.Doctor.DoctorShowPatient;
 
 import javax.swing.JButton;
 import javax.swing.JTable;
 
 import users.Users;
 import users.UsersController;
+import users.reporters.patient.Patient;
 
 @SuppressWarnings("serial")
 public class AdminPendingUsers extends ListAll {
@@ -63,10 +64,9 @@ public class AdminPendingUsers extends ListAll {
 			elements.setValueAt(ls.get(i).getFamilyname(), i, 2);
 			elements.setValueAt(ls.get(i).getUsername(), i, 3);
 			if(ls.get(i).getType().equals("Patient"))
-				this.add(new PatientProfile(), "#" + i); // TODO
+				this.add(new DoctorShowPatient(notice, (Patient) ls.get(i)), "#" + i); // TODO
 			else // Doctors
 				this.add(new DoctorProfile(), "#" + i); // TODO
 		}
 	}
-
 }

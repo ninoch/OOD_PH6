@@ -8,11 +8,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class BodyInfoFile implements BodyInfoDB {
 	private List<BodyInfo> allInfos = null;
 	
+	@SuppressWarnings("unchecked")
 	private List<BodyInfo> readInfos() {
 		if(allInfos == null)
 		{
@@ -34,8 +36,8 @@ public class BodyInfoFile implements BodyInfoDB {
 			{
 				try {
 					Object obj = ois.readObject(); 
-					if(obj instanceof BodyInfo)
-						allInfos.add((BodyInfo)(ois.readObject()));
+					if(obj instanceof ArrayList)
+						allInfos.addAll((Collection<? extends BodyInfo>) obj);
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

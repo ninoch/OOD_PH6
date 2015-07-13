@@ -8,12 +8,14 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
 public class ConsultDBFile implements ConsultDB {
 	private List<Consult> allCons = null;
 
+	@SuppressWarnings("unchecked")
 	private List<Consult> readConsults() {
 		if(allCons == null)
 		{
@@ -35,8 +37,8 @@ public class ConsultDBFile implements ConsultDB {
 			{
 				try {
 					Object obj = ois.readObject(); 
-					if(obj instanceof Consult)
-						allCons.add((Consult)(ois.readObject()));
+					if(obj instanceof ArrayList)
+						allCons.addAll((Collection<? extends Consult>) obj);
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

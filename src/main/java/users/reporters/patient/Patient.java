@@ -6,8 +6,8 @@ import medicalinfo.Exercise;
 import medicalinfo.ExerciseController;
 import register.RegisterList;
 import users.Medicate;
+import users.MedicateController;
 import users.Users;
-import users.UsersController;
 
 @SuppressWarnings("serial")
 @Entity
@@ -21,7 +21,7 @@ public class Patient extends Users{
 		this.setType("Patient");
 		this.setPersonId(personId);
 		RegisterList.add(this);
-		UsersController.save(this);
+//		UsersController.save(this);
 	}
 	public Patient()
 	{
@@ -34,7 +34,7 @@ public class Patient extends Users{
 		PersonId = personId;
 	}
 	public void choose_general_doctor(String docuser){
-		new Medicate(docuser, this.getUsername());
+		MedicateController.save(new Medicate(docuser, this.getUsername()));
 	}
 	public void addExercise(String type, int minutes, String startTime, String endTime, int calory, String date){
 		ExerciseController.save(new Exercise(getUsername(), type, minutes, startTime, endTime, calory, date));

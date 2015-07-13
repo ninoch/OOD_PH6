@@ -29,7 +29,7 @@ public class Exercise implements Serializable{
 		this.endTime=endTime;
 		this.calory=calory;
 		this.date=date;
-		ExerciseController.save(this);
+		//ExerciseController.save(this);
 	}
 	public Exercise(){
 		

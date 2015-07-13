@@ -26,10 +26,13 @@ public class Disease implements Serializable{
 		symptoms = symp;
 		this.date = _date;
 		
-		DiseaseController.save(this);
-		new Prescription(id, _date);
+//		DiseaseController.save(this);
+//		new Prescription(id, _date);
+//		DiseaseController.save(this);
+		PrescriptionController.save(new Prescription(id, _date));
 		
 	}
+	
 	public Disease(){
 		
 	}
@@ -60,6 +63,10 @@ public class Disease implements Serializable{
 	public void add_drug(String name_drug, int dose) {
 		Prescription p = PrescriptionController.find(id);
 		p.add_drug(name_drug, dose);
+	}
+	
+	public void setId(Long _id) {
+		this.id = _id;
 	}
 	
 	public Long getId() {

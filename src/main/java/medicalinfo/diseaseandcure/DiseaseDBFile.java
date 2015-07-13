@@ -8,12 +8,15 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Random;
 
 
 public class DiseaseDBFile implements DiseaseDB {
 	private List<Disease> allDis = null;
 	
+	@SuppressWarnings("unchecked")
 	private List<Disease> readDisease() {
 		if(allDis == null)
 		{
@@ -35,8 +38,8 @@ public class DiseaseDBFile implements DiseaseDB {
 			{
 				try {
 					Object obj = ois.readObject(); 
-					if(obj instanceof Disease)
-						allDis.add((Disease)(ois.readObject()));
+					if(obj instanceof ArrayList)
+						allDis.addAll((Collection<? extends Disease>) obj);
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -88,7 +91,10 @@ public class DiseaseDBFile implements DiseaseDB {
 	public void save(Disease d) {
 		if(allDis == null)
 			readDisease();
+		Random rand = new Random();
+		d.setId(rand.nextLong());
 		allDis.add(d);
+		
 		System.err.println("Disease " + d.getName() + " Added to DB! " );
 		SaveChanges();
 	}

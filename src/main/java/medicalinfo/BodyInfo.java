@@ -30,7 +30,7 @@ public class BodyInfo implements Serializable{
 		bloodPressure = _bloodPressure;
 		bloodSugar = _bloodSugar;
 		date = _date;
-		BodyInfoController.save(this);
+//		BodyInfoController.save(this);
 	}
 	public BodyInfo() {
 		

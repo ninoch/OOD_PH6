@@ -13,8 +13,10 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 import medicalinfo.diseaseandcure.Consult;
+import medicalinfo.diseaseandcure.ConsultController;
 import users.LoginedUser;
 import users.reporters.patient.Patient;
+
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
@@ -76,7 +78,7 @@ public class DoctorToPatient extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// int ind = to.getSelectedIndex();
 				// System.err.println(to.getSelectedItem() + " is selected");
-				new Consult(LoginedUser.getUser().getUsername(), patient.getUsername(), date.getText(), message.getText(), title.getText());
+				ConsultController.save(new Consult(LoginedUser.getUser().getUsername(), patient.getUsername(), date.getText(), message.getText(), title.getText()));
 				// TODO
 				try {
 					notice.call();

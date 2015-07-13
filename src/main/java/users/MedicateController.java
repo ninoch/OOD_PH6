@@ -78,7 +78,7 @@ public class MedicateController {
 				e.printStackTrace();
 				return;
 			}
-		new Medicate(thisDoc, other, pat);
+		save(new Medicate(thisDoc, other, pat));
 	}
 	public static ArrayList<Medicate> showAllRef(String username) {
 		if(!LoginedUser.getUser().getUsername().equals(username))

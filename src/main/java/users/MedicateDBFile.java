@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import users.reporters.doctor.Doctor;
@@ -17,6 +18,7 @@ public class MedicateDBFile implements MedicateDB {
 	private List<Medicate> allMedicates = null;
 	
 	
+	@SuppressWarnings("unchecked")
 	private List<Medicate> readMedicates() {
 		if(allMedicates == null)
 		{
@@ -38,8 +40,8 @@ public class MedicateDBFile implements MedicateDB {
 			{
 				try {
 					Object obj = ois.readObject(); 
-					if(obj instanceof Medicate)
-						allMedicates.add((Medicate)(ois.readObject()));
+					if(obj instanceof ArrayList)
+						allMedicates.addAll((Collection<? extends Medicate>) obj);
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

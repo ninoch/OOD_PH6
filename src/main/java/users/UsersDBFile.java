@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import users.reporters.doctor.Doctor;
@@ -17,7 +18,9 @@ import users.reporters.doctor.SpecialDoctor;
 public class UsersDBFile implements UsersDB {
 	private List<Users> allUsers = null;
 
+	@SuppressWarnings("unchecked")
 	private List<Users> readUsers() {
+		int num = 0;
 		if(allUsers == null)
 		{
 			allUsers = new ArrayList<Users>();
@@ -35,12 +38,17 @@ public class UsersDBFile implements UsersDB {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			while(true)
+			try {
+				num = ois.readInt();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			for(int i = 0; i < num; i++)
 			{
 				try {
 					Object obj = ois.readObject(); 
-					if(obj instanceof Users)
-						allUsers.add((Users)(ois.readObject()));
+					allUsers.addAll((Collection<? extends Users>) obj);
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -59,6 +67,9 @@ public class UsersDBFile implements UsersDB {
 				e.printStackTrace();
 			}
 		}
+		System.err.println("ALL " + num + " USERS: ");
+		for(Users u : allUsers)
+			System.err.println(u.getName() + " " + u.getFamilyname());
 		return allUsers;
 	}
 	
@@ -70,6 +81,12 @@ public class UsersDBFile implements UsersDB {
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			oos.writeInt(allUsers.size());
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
