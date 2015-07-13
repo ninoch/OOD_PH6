@@ -29,6 +29,7 @@ public class Disease implements Serializable{
 //		DiseaseController.save(this);
 //		new Prescription(id, _date);
 //		DiseaseController.save(this);
+		DiseaseController.saveit(this);
 		PrescriptionController.save(new Prescription(id, _date));
 		
 	}

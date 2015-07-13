@@ -36,6 +36,9 @@ public class DiseaseController {
 	}
 
 	public static void save(Disease disease) {
+	}
+	
+	public static void saveit(Disease disease) {
 		if(!LoginedUser.getUser().getUsername().equals(disease.getDocUser()))
 		{
 			try {
